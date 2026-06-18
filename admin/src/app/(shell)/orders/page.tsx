@@ -76,8 +76,10 @@ export default function AdminOrdersPage() {
                 <TableCell className="font-semibold">{formatPrice(order.grandTotal)}</TableCell>
                 <TableCell>
                   <Select value={order.status} onValueChange={(v) => v && handleStatusChange(order._id, v)}>
-                    <SelectTrigger className="w-36"><SelectValue /></SelectTrigger>
-                    <SelectContent>
+                    <SelectTrigger className="w-full min-w-[8.5rem]" size="sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent align="end">
                       {ORDER_STATUSES.map((s) => (
                         <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
                       ))}

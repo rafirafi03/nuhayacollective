@@ -12,7 +12,7 @@ import {
   type ProductFilterState,
 } from "@/components/products/product-filters";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
@@ -117,7 +117,7 @@ function ProductsContent() {
         <div className="flex-1 min-w-0">
           {/* Toolbar */}
           <div className="flex flex-col gap-3 mb-4 sm:mb-6">
-            <div className="flex items-center gap-2 min-w-0">
+            <div className="flex w-full min-w-0 items-center gap-2 sm:gap-3">
               <Sheet open={filtersOpen} onOpenChange={setFiltersOpen}>
                 <SheetTrigger
                   className={cn(
@@ -155,18 +155,24 @@ function ProductsContent() {
                 </SheetContent>
               </Sheet>
 
-              <Select value={sort} onValueChange={(v) => { if (v) { setSort(v); setPage(1); } }}>
-                <SelectTrigger className="flex-1 sm:flex-none sm:w-48 h-9 rounded-full min-w-0">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  {SORT_OPTIONS.map((o) => (
-                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="flex min-w-0 flex-1 items-center gap-2 sm:flex-initial sm:gap-2.5">
+                <span className="label-caps hidden shrink-0 whitespace-nowrap sm:inline">Sort by</span>
+                <Select value={sort} onValueChange={(v) => { if (v) { setSort(v); setPage(1); } }}>
+                  <SelectTrigger size="sm" className="h-9 min-w-0 flex-1 sm:w-[11rem] sm:flex-none">
+                    <SelectValue placeholder="Sort by" />
+                  </SelectTrigger>
+                  <SelectContent align="start" alignItemWithTrigger={false}>
+                    <SelectGroup>
+                      <SelectLabel>Order</SelectLabel>
+                      {SORT_OPTIONS.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
 
-              <div className="flex items-center gap-0.5 shrink-0 ml-auto sm:ml-0 border border-border/60 rounded-full p-0.5 bg-card">
+              <div className="ml-auto flex h-9 shrink-0 items-center gap-0.5 rounded-full border border-border/60 bg-card p-0.5">
                 <Button
                   variant={viewMode === "grid" ? "secondary" : "ghost"}
                   size="icon"

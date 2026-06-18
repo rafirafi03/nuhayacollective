@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, onQuickView, className, layout = "grid" }: ProductCardProps) {
+  const router = useRouter();
   const addItem = useCartStore((s) => s.addItem);
   const setCartOpen = useCartStore((s) => s.setCartOpen);
   const { toggleItem, isInWishlist } = useWishlistStore();
@@ -58,6 +60,12 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
     e.stopPropagation();
     toggleItem(product._id);
     toast.success(inWishlist ? "Removed from wishlist" : "Added to wishlist");
+  };
+
+  const goToProduct = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    router.push(productHref);
   };
 
   if (layout === "list") {
@@ -109,8 +117,8 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Link href={productHref} className="block">
-        <div className="relative aspect-[3/4] overflow-hidden rounded-lg sm:rounded-xl bg-muted shadow-sm transition-shadow duration-500 group-hover:shadow-md">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg sm:rounded-xl bg-muted shadow-sm transition-shadow duration-500 group-hover:shadow-md">
+        <Link href={productHref} className="absolute inset-0 z-[1]" aria-label={product.name}>
           <Image
             src={imageUrl}
             alt={product.name}
@@ -118,35 +126,35 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 25vw"
           />
-          {discount > 0 && (
-            <Badge className="absolute top-2 left-2 rounded-full bg-accent text-accent-foreground border-0 px-2 text-[9px] sm:text-[10px] tracking-wider uppercase">
-              -{discount}%
-            </Badge>
+        </Link>
+        {discount > 0 && (
+          <Badge className="absolute top-2 left-2 z-[2] rounded-full bg-accent text-accent-foreground border-0 px-2 text-[9px] sm:text-[10px] tracking-wider uppercase">
+            -{discount}%
+          </Badge>
+        )}
+        {product.isNewArrival && !discount && (
+          <Badge className="absolute top-2 left-2 z-[2] rounded-full bg-primary text-primary-foreground border-0 px-2 text-[9px] sm:text-[10px] tracking-wider uppercase">
+            New
+          </Badge>
+        )}
+        {/* Desktop hover overlay — above image link so buttons don't nest <a> tags */}
+        <div className="absolute inset-0 z-[3] hidden sm:flex items-end justify-center p-3 gap-2 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+          {hasVariants ? (
+            <Button size="sm" className="flex-1 rounded-full h-9 text-xs" onClick={goToProduct}>
+              Select Options
+            </Button>
+          ) : (
+            <Button size="sm" className="flex-1 rounded-full h-9 text-xs" onClick={handleAddToCart}>
+              <ShoppingBag className="h-3.5 w-3.5 mr-1.5" /> Add to Bag
+            </Button>
           )}
-          {product.isNewArrival && !discount && (
-            <Badge className="absolute top-2 left-2 rounded-full bg-primary text-primary-foreground border-0 px-2 text-[9px] sm:text-[10px] tracking-wider uppercase">
-              New
-            </Badge>
+          {onQuickView && (
+            <Button size="sm" variant="secondary" className="rounded-full h-9 w-9 p-0 bg-white/95" onClick={handleQuickView}>
+              <Eye className="h-3.5 w-3.5" />
+            </Button>
           )}
-          {/* Desktop hover overlay */}
-          <div className="absolute inset-0 hidden sm:flex items-end justify-center p-3 gap-2 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {hasVariants ? (
-              <Button size="sm" className="flex-1 rounded-full h-9 text-xs" asChild>
-                <Link href={productHref} onClick={(e) => e.stopPropagation()}>Select Options</Link>
-              </Button>
-            ) : (
-              <Button size="sm" className="flex-1 rounded-full h-9 text-xs" onClick={handleAddToCart}>
-                <ShoppingBag className="h-3.5 w-3.5 mr-1.5" /> Add to Bag
-              </Button>
-            )}
-            {onQuickView && (
-              <Button size="sm" variant="secondary" className="rounded-full h-9 w-9 p-0 bg-white/95" onClick={handleQuickView}>
-                <Eye className="h-3.5 w-3.5" />
-              </Button>
-            )}
-          </div>
         </div>
-      </Link>
+      </div>
 
       {/* Mobile action row — always visible, compact */}
       <div className="flex sm:hidden gap-1.5 mt-2">
