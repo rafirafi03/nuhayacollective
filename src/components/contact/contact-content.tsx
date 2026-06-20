@@ -269,7 +269,7 @@ export function ContactContent({ settings }: ContactContentProps) {
       {settings.address && (
         <section className="section-cream border-y border-border/60">
           <Container className="py-12 sm:py-16">
-            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 lg:items-start">
               <div>
                 <p className="label-caps mb-3">Visit the Atelier</p>
                 <div className="oud-accent-bar mb-5" />
@@ -299,11 +299,13 @@ export function ContactContent({ settings }: ContactContentProps) {
                 )}
               </div>
 
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] min-h-[280px] sm:min-h-[320px] overflow-hidden rounded-2xl ring-1 ring-border/60 shadow-[0_8px_32px_-12px_rgba(20,20,20,0.12)]">
-                <LocationMap address={settings.address} />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 scrim-bottom pt-16 pb-5 px-5 sm:px-6">
-                  <p className="label-caps text-brand-gold mb-1.5">Our Location</p>
-                  <p className="font-heading text-base sm:text-lg leading-snug text-white line-clamp-2">
+              <div className="relative w-full overflow-hidden rounded-2xl ring-1 ring-border/60 shadow-[0_8px_32px_-12px_rgba(20,20,20,0.12)]">
+                <div className="relative w-full h-[220px] sm:h-[280px] md:h-[320px] lg:h-[360px]">
+                  <LocationMap address={settings.address} />
+                </div>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 scrim-bottom pt-12 pb-4 px-4 sm:px-5 sm:pb-5">
+                  <p className="label-caps text-brand-gold mb-1">Our Location</p>
+                  <p className="font-heading text-sm sm:text-base leading-snug text-white line-clamp-2">
                     {settings.address}
                   </p>
                 </div>

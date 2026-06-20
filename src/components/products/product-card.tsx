@@ -158,21 +158,21 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
             </div>
           </Link>
 
-          <div className="flex gap-2 mt-3 pt-3 border-t border-border">
+          <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border">
             {hasVariants ? (
-              <Button size="sm" variant="outline" className="flex-1 rounded-full h-9 text-xs font-sans tracking-wide border-border hover:border-foreground/40" asChild>
+              <Button size="sm" variant="outline" className="flex-1 min-w-0 rounded-full h-9 text-xs font-sans tracking-wide border-border hover:border-foreground/40" asChild>
                 <Link href={productHref}>Select Options</Link>
               </Button>
             ) : (
-              <Button size="sm" className="flex-1 rounded-full h-9 text-xs font-sans tracking-wide bg-foreground text-background hover:bg-foreground/90" onClick={handleAddToCart}>
-                <ShoppingBag className="h-3 w-3 mr-1.5" /> Add to Bag
+              <Button size="sm" className="flex-1 min-w-0 rounded-full h-9 text-xs font-sans tracking-wide bg-foreground text-background hover:bg-foreground/90" onClick={handleAddToCart}>
+                <ShoppingBag className="h-3 w-3 mr-1.5 shrink-0" /> Add to Bag
               </Button>
             )}
             {onQuickView && (
               <Button
-                size="sm"
+                size="icon"
                 variant="outline"
-                className="h-9 w-9 p-0 rounded-full shrink-0 border-border hover:border-foreground/40"
+                className="size-9 shrink-0 rounded-full border-border hover:border-foreground/40"
                 onClick={(e) => { e.preventDefault(); onQuickView(product); }}
                 aria-label="Quick view"
               >
