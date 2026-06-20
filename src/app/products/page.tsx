@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Grid3x3, List, SlidersHorizontal } from "lucide-react";
-import { Container, SectionHeading } from "@/components/shared/container";
+import { Container } from "@/components/shared/container";
+import { PageHeader } from "@/components/shared/page-header";
 import { ProductCard } from "@/components/products/product-card";
 import { ProductQuickView } from "@/components/products/product-quick-view";
 import {
@@ -22,7 +23,7 @@ import { SORT_OPTIONS, ITEMS_PER_PAGE } from "@/lib/constants";
 import type { Product, Category, Brand } from "@/types";
 import { cn } from "@/lib/utils";
 
-const DEFAULT_PRICE: [number, number] = [0, 15000];
+const DEFAULT_PRICE: [number, number] = [0, 20000];
 
 function ProductsContent() {
   const searchParams = useSearchParams();
@@ -49,7 +50,7 @@ function ProductsContent() {
     filters.search,
     filters.category,
     filters.brand,
-    filters.priceRange[0] > 0 || filters.priceRange[1] < 15000,
+    filters.priceRange[0] > 0 || filters.priceRange[1] < 20000,
   ].filter(Boolean).length;
 
   const patchFilters = (patch: Partial<ProductFilterState>) => {
@@ -90,13 +91,12 @@ function ProductsContent() {
   }, [fetchProducts]);
 
   return (
-    <Container className="py-6 sm:py-8">
-      <SectionHeading
-        title="All Dresses"
-        subtitle={`${total} piece${total === 1 ? "" : "s"} in our collection`}
+    <div className="section-parchment min-h-[60vh]">
+    <Container className="py-6 sm:py-10">
+      <PageHeader
+        title="All Fragrances"
+        subtitle={`${total} fragrance${total === 1 ? "" : "s"} in our collection`}
         label="Shop"
-        align="left"
-        className="mb-6 sm:mb-8"
       />
 
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 min-w-0">
@@ -135,7 +135,7 @@ function ProductsContent() {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-full max-w-[min(100vw,22rem)] overflow-y-auto p-0">
                   <SheetHeader className="p-5 pb-0 border-b border-border/60">
-                    <SheetTitle className="font-heading text-primary text-left">Filter Dresses</SheetTitle>
+                    <SheetTitle className="font-heading text-primary text-left">Filter Fragrances</SheetTitle>
                   </SheetHeader>
                   <div className="p-5">
                     <ProductFilters
@@ -210,7 +210,7 @@ function ProductsContent() {
             </div>
           ) : products.length === 0 ? (
             <div className="text-center py-16 sm:py-20">
-              <p className="font-heading text-xl text-primary mb-2">No dresses found</p>
+              <p className="font-heading text-xl text-primary mb-2">No fragrances found</p>
               <p className="text-muted-foreground text-sm mb-6">Try adjusting your filters</p>
               <Button variant="outline" className="rounded-full" onClick={clearFilters}>Clear filters</Button>
             </div>
@@ -247,6 +247,7 @@ function ProductsContent() {
 
       <ProductQuickView product={quickViewProduct} open={!!quickViewProduct} onClose={() => setQuickViewProduct(null)} />
     </Container>
+    </div>
   );
 }
 

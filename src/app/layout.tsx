@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -17,19 +17,19 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const jost = Jost({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: `${BRAND_NAME} ${BRAND_TAGLINE} — Premium Ladies Dresses`,
+    default: `${BRAND_NAME} ${BRAND_TAGLINE} — Luxury Oud Perfumes`,
     template: `%s | ${BRAND_NAME} ${BRAND_TAGLINE}`,
   },
-  description: "Discover elegant evening gowns, midi dresses, and occasion wear at Calira Couture. Shop curated ladies fashion with WhatsApp ordering.",
+  description: "Discover premium oud perfumes, attars, and luxury fragrances at AM Fragrance. Shop curated Arabian oud collections with WhatsApp ordering.",
   metadataBase: new URL(APP_URL),
   openGraph: {
     type: "website",
@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable} h-full`}>
+    <html lang="en" className={`${cormorant.variable} ${jost.variable} h-full`}>
       <head>
         <script
           type="application/ld+json"

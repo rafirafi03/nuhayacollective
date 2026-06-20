@@ -1,4 +1,4 @@
-import type { Category, Brand, Banner, FAQ, Testimonial, StoreSettings, Review, OrderRequest, User, Coupon, DashboardStats } from "@/types";
+import type { Category, Brand, Banner, FAQ, Testimonial, StoreSettings, Review, OrderRequest, User, Coupon, DashboardStats, InstagramReel } from "@/types";
 import { isSanityConfigured, sanityClient } from "@/lib/sanity/client";
 import {
   CATEGORIES_QUERY, BRANDS_QUERY, BANNERS_QUERY, FAQS_QUERY,
@@ -10,7 +10,7 @@ import {
 import {
   mockCategories, mockBrands, mockBanners, mockFAQs,
   mockTestimonials, mockSettings, mockProducts, mockReviews,
-  mockOrders, mockUsers, mockCoupons,
+  mockOrders, mockUsers, mockCoupons, mockInstagramReels, mockAboutStoryReel,
 } from "@/lib/mock-data";
 import type { Product } from "@/types";
 
@@ -101,6 +101,17 @@ export async function getCoupons(): Promise<Coupon[]> {
   if (!isSanityConfigured) return mockCoupons;
   const data = await sanityClient.fetch<Coupon[]>(COUPONS_QUERY);
   return data.length ? data : mockCoupons;
+}
+
+export async function getInstagramReels(): Promise<InstagramReel[]> {
+  if (!isSanityConfigured) return mockInstagramReels;
+  return mockInstagramReels;
+}
+
+/** Dedicated reel for the Our Story / About page */
+export async function getStoryReel(): Promise<InstagramReel | null> {
+  if (!isSanityConfigured) return mockAboutStoryReel;
+  return mockAboutStoryReel;
 }
 
 export async function getDashboardStats(): Promise<DashboardStats> {

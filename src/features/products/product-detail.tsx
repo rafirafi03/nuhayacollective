@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import Image from "next/image";
+import { SafeImage } from "@/components/shared/safe-image";
 import Link from "next/link";
-import { Minus, Plus, ShoppingBag, Heart, Share2, MessageCircle, Star, Check, X, Ruler } from "lucide-react";
+import { Minus, Plus, ShoppingBag, Heart, Share2, MessageCircle, Star, Check, X, Droplets } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { ProductCard } from "@/components/products/product-card";
 import { VariantSelector } from "@/components/products/variant-selector";
@@ -19,7 +19,8 @@ import { useCartStore } from "@/store/cart-store";
 import { useWishlistStore } from "@/store/wishlist-store";
 import { createSingleOrderAction } from "@/actions/order-actions";
 import { formatPrice, calculateDiscount, getProductImageUrl } from "@/utils/format";
-import { getProductSizes, getVariantStock, productHasVariants } from "@/lib/dress-variants";
+import { getProductVolumes, getVariantStock, productHasVariants } from "@/lib/fragrance-variants";
+import { ProductInstagramReels } from "@/components/home/instagram-reels-section";
 import { cn } from "@/lib/utils";
 import type { Product, Review } from "@/types";
 import { toast } from "sonner";
@@ -31,13 +32,13 @@ interface ProductDetailProps {
 }
 
 export function ProductDetail({ product, reviews, relatedProducts }: ProductDetailProps) {
-  const sizes = getProductSizes(product);
-  const defaultColor = product.colors?.[0]?.name ?? "";
-  const defaultSize = sizes.find((s) => defaultColor && getVariantStock(product, s, defaultColor) > 0) ?? sizes[0] ?? "M";
+  const volumes = getProductVolumes(product);
+  const defaultConcentration = product.colors?.[0]?.name ?? "";
+  const defaultVolume = volumes.find((v) => defaultConcentration && getVariantStock(product, v, defaultConcentration) > 0) ?? volumes[0] ?? "50ml";
 
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState(defaultSize);
-  const [selectedColor, setSelectedColor] = useState(defaultColor);
+  const [selectedSize, setSelectedSize] = useState(defaultVolume);
+  const [selectedColor, setSelectedColor] = useState(defaultConcentration);
   const [selectedImage, setSelectedImage] = useState(0);
   const [zoomOpen, setZoomOpen] = useState(false);
   const [whatsappOpen, setWhatsappOpen] = useState(false);
@@ -69,11 +70,11 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
     ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
     : product.averageRating;
 
-  const variantLabel = hasVariants ? `${selectedColor} · Size ${selectedSize}` : undefined;
+  const variantLabel = hasVariants ? `${selectedColor} · ${selectedSize}` : undefined;
 
   const handleAddToCart = () => {
     if (hasVariants && (!selectedSize || !selectedColor)) {
-      toast.error("Please select size and colour");
+      toast.error("Please select volume and concentration");
       return;
     }
     if (variantStock <= 0) {
@@ -97,7 +98,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
 
   const handleWhatsAppOrder = async () => {
     if (hasVariants && (!selectedSize || !selectedColor)) {
-      toast.error("Please select size and colour");
+      toast.error("Please select volume and concentration");
       return;
     }
     if (!customer.name || !customer.phone || !customer.address) {
@@ -140,50 +141,46 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
       <nav className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 flex flex-wrap items-center gap-x-1 gap-y-1">
         <Link href="/" className="hover:text-primary shrink-0">Home</Link>
         <span>/</span>
-        <Link href="/products" className="hover:text-primary shrink-0">Dresses</Link>
+        <Link href="/products" className="hover:text-primary shrink-0">Fragrances</Link>
         <span>/</span>
         <span className="text-foreground truncate min-w-0">{product.name}</span>
       </nav>
 
       <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-14 items-start">
         <div className="lg:sticky lg:top-24 space-y-3">
-          <div className="relative w-full max-h-[min(70vh,520px)] sm:max-h-[min(75vh,600px)] aspect-[3/4] overflow-hidden rounded-lg bg-muted ring-1 ring-border/40 cursor-zoom-in"
+          <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[min(75vh,640px)] overflow-hidden rounded-xl bg-brand-espresso cursor-zoom-in"
             onClick={() => setZoomOpen(true)}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === "Enter" && setZoomOpen(true)}
           >
-            <Image
+            <SafeImage
               src={images[selectedImage]}
               alt={product.name}
               fill
-              className="object-cover object-top"
+              className="object-cover object-center"
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             {discount > 0 && (
-              <Badge className="absolute top-4 left-4 rounded-full bg-accent text-accent-foreground border-0 uppercase tracking-wider text-[10px]">
+              <Badge className="absolute top-4 left-4 rounded-full bg-white text-brand-espresso border-0 uppercase tracking-wider text-[10px]">
                 -{discount}%
               </Badge>
             )}
           </div>
           {product.colors && product.colors.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-              {product.colors.map((color) => (
+            <div className="flex flex-wrap gap-2 pb-1">
+              {product.colors.map((conc) => (
                 <button
-                  key={color.name}
+                  key={conc.name}
                   type="button"
-                  onClick={() => setSelectedColor(color.name)}
+                  onClick={() => setSelectedColor(conc.name)}
                   className={cn(
-                    "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
-                    selectedColor === color.name ? "border-primary" : "border-transparent"
+                    "px-3 py-1.5 rounded-full border text-xs font-medium transition-colors",
+                    selectedColor === conc.name ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground/40"
                   )}
-                  title={color.name}
                 >
-                  <span
-                    className="h-6 w-6 rounded-full border border-black/10"
-                    style={{ backgroundColor: color.hex }}
-                  />
+                  {conc.name}
                 </button>
               ))}
             </div>
@@ -197,7 +194,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
                   onClick={() => setSelectedImage(i)}
                   className={`relative h-16 w-14 sm:h-20 sm:w-16 rounded-md overflow-hidden border-2 transition-colors shrink-0 ${i === selectedImage ? "border-primary" : "border-border/40"}`}
                 >
-                  <Image src={img} alt="" fill className="object-cover" sizes="64px" />
+                  <SafeImage src={img} alt="" fill className="object-cover" sizes="64px" />
                 </button>
               ))}
             </div>
@@ -262,10 +259,10 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 mb-4 sticky bottom-0 sm:static z-20 bg-background/95 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none py-3 sm:py-0 -mx-4 px-4 sm:mx-0 sm:px-0 border-t sm:border-t-0 border-border/60 sm:border-0">
-            <Button size="lg" className="w-full sm:flex-1 h-11 rounded-full" onClick={handleAddToCart} disabled={variantStock === 0}>
+            <Button size="lg" variant="default" className="w-full sm:flex-1 h-11 rounded-full" onClick={handleAddToCart} disabled={variantStock === 0}>
               <ShoppingBag className="h-4 w-4 mr-2" /> Add to Bag
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:flex-1 border-primary text-primary hover:bg-primary/5 h-11 rounded-full" onClick={() => setWhatsappOpen(true)} disabled={variantStock === 0}>
+            <Button size="lg" variant="outline" className="w-full sm:flex-1 border-foreground/25 hover:bg-secondary h-11 rounded-full" onClick={() => setWhatsappOpen(true)} disabled={variantStock === 0}>
               <MessageCircle className="h-4 w-4 mr-2" /> Order via WhatsApp
             </Button>
           </div>
@@ -278,17 +275,17 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
               <Share2 className="h-4 w-4 mr-1" /> Share
             </Button>
             <Button variant="ghost" size="sm" className="rounded-full text-muted-foreground">
-              <Ruler className="h-4 w-4 mr-1" /> Size Guide
+              <Droplets className="h-4 w-4 mr-1" /> Fragrance Guide
             </Button>
           </div>
 
           {product.features && product.features.length > 0 && (
-            <div className="mt-4 p-4 rounded-xl bg-secondary/50 border border-border/40">
-              <h3 className="label-caps mb-3">Details</h3>
+            <div className="mt-4 fragrance-panel">
+              <h3 className="label-caps mb-3 text-brand-amber">Details</h3>
               <ul className="space-y-2">
                 {product.features.map((f, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 text-accent shrink-0" /> {f}
+                    <Check className="h-4 w-4 text-brand-gold shrink-0" /> {f}
                   </li>
                 ))}
               </ul>
@@ -302,7 +299,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
       <Tabs defaultValue="description">
         <TabsList className="w-full justify-start overflow-x-auto flex-nowrap h-auto p-1 gap-1 bg-secondary/50">
           <TabsTrigger value="description" className="shrink-0 text-xs sm:text-sm rounded-full">Description</TabsTrigger>
-          <TabsTrigger value="specifications" className="shrink-0 text-xs sm:text-sm rounded-full">Fabric & Fit</TabsTrigger>
+          <TabsTrigger value="specifications" className="shrink-0 text-xs sm:text-sm rounded-full">Fragrance Notes</TabsTrigger>
           <TabsTrigger value="reviews" className="shrink-0 text-xs sm:text-sm rounded-full">Reviews ({reviews.length})</TabsTrigger>
         </TabsList>
         <TabsContent value="description" className="mt-6 prose max-w-none">
@@ -319,7 +316,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground">Contact us for detailed measurements.</p>
+            <p className="text-muted-foreground">Contact us for detailed fragrance profiling.</p>
           )}
         </TabsContent>
         <TabsContent value="reviews" className="mt-6 space-y-6">
@@ -343,10 +340,14 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
         </TabsContent>
       </Tabs>
 
+      {product.instagramReels && product.instagramReels.length > 0 && (
+        <ProductInstagramReels reels={product.instagramReels} productName={product.name} />
+      )}
+
       {relatedProducts.length > 0 && (
         <div className="mt-16">
           <p className="label-caps mb-2 text-center">You may also love</p>
-          <h2 className="font-heading text-2xl sm:text-3xl text-center mb-8 text-primary">Complete the Look</h2>
+          <h2 className="font-heading text-2xl sm:text-3xl text-center mb-8 text-primary">Complete Your Collection</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {relatedProducts.map((p) => (
               <ProductCard key={p._id} product={p} />
@@ -358,7 +359,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
       <Dialog open={zoomOpen} onOpenChange={setZoomOpen}>
         <DialogContent className="w-[calc(100vw-2rem)] max-w-4xl p-0">
           <div className="relative aspect-[3/4]">
-            <Image src={images[selectedImage]} alt={product.name} fill className="object-contain" />
+            <SafeImage src={images[selectedImage]} alt={product.name} fill className="object-contain" />
           </div>
         </DialogContent>
       </Dialog>

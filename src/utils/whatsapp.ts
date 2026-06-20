@@ -8,8 +8,8 @@ interface CustomerDetails {
   email?: string;
 }
 
-function variantLine(size?: string, color?: string) {
-  const parts = [color, size ? `Size ${size}` : undefined].filter(Boolean);
+function variantLine(volume?: string, concentration?: string) {
+  const parts = [concentration, volume].filter(Boolean);
   return parts.length ? `\n${parts.join(" · ")}` : "";
 }
 
@@ -21,9 +21,9 @@ export function generateSingleProductMessage(
   customer: CustomerDetails,
   options?: { size?: string; color?: string }
 ): string {
-  return `Hello Calira Couture,
+  return `Hello AM Fragrance,
 
-I would like to order the following dress:
+I would like to order the following fragrance:
 
 Product:
 ${productName}${variantLine(options?.size, options?.color)}
@@ -48,7 +48,7 @@ ${customer.phone}
 Address:
 ${customer.address}
 
-Please confirm size availability and delivery.
+Please confirm availability and delivery.
 
 Thank you.`;
 }
@@ -67,9 +67,9 @@ export function generateCartMessage(
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const grandTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  return `Hello Calira Couture,
+  return `Hello AM Fragrance,
 
-I would like to order the following dresses:
+I would like to order the following fragrances:
 
 ---
 
@@ -119,5 +119,5 @@ export function generateOrderNumber(): string {
   const date = new Date();
   const year = date.getFullYear();
   const random = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
-  return `CC-${year}-${random}`;
+  return `AM-${year}-${random}`;
 }

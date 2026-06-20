@@ -10,9 +10,15 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-heading);
-  --color-brand-green: #0F4A3A;
-  --color-brand-cream: #F5F0E8;
-  --color-brand-gold: #B89A5A;
+  --color-brand-oud: #1f1f1f;
+  --color-brand-espresso: #141414;
+  --color-brand-sand: #e8e6e1;
+  --color-brand-cream: #f7f6f3;
+  --color-brand-parchment: #eeede9;
+  --color-brand-champagne: #dcdad4;
+  --color-brand-gold: #6e675f;
+  --color-brand-gold-light: #8a8278;
+  --color-brand-amber: #4a4540;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -51,69 +57,35 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Calira Couture — forest green, warm cream, antique gold */
+/* AM Fragrance — unisex niche fragrance design system */
 :root {
-  --background: #F5F0E8;
-  --foreground: #1a2e28;
-  --card: #faf7f2;
-  --card-foreground: #1a2e28;
-  --popover: #faf7f2;
-  --popover-foreground: #1a2e28;
-  --primary: #0F4A3A;
-  --primary-foreground: #F5F0E8;
-  --secondary: #ebe4d8;
-  --secondary-foreground: #0F4A3A;
-  --muted: #ebe4d8;
-  --muted-foreground: #5c6b64;
-  --accent: #B89A5A;
-  --accent-foreground: #1a2e28;
+  --background: #e8e6e1;
+  --foreground: #141414;
+  --card: #f7f6f3;
+  --card-foreground: #141414;
+  --popover: #f7f6f3;
+  --popover-foreground: #141414;
+  --primary: #141414;
+  --primary-foreground: #f7f6f3;
+  --secondary: #dcdad4;
+  --secondary-foreground: #141414;
+  --muted: #c8c6c0;
+  --muted-foreground: #5c5c5c;
+  --accent: #6e675f;
+  --accent-foreground: #f7f6f3;
   --destructive: #b54545;
-  --border: #ddd5c8;
-  --input: #e8e0d4;
-  --ring: #B89A5A;
-  --chart-1: #0F4A3A;
-  --chart-2: #B89A5A;
-  --chart-3: #5a7a6e;
-  --chart-4: #8b7355;
-  --chart-5: #c4b59a;
+  --border: #cbc9c3;
+  --input: #dcdad4;
+  --ring: #6e675f;
   --radius: 0.5rem;
-  --sidebar: #0F4A3A;
-  --sidebar-foreground: #F5F0E8;
-  --sidebar-primary: #B89A5A;
-  --sidebar-primary-foreground: #1a2e28;
-  --sidebar-accent: #145242;
-  --sidebar-accent-foreground: #F5F0E8;
-  --sidebar-border: #1a5c48;
-  --sidebar-ring: #B89A5A;
-}
-
-.dark {
-  --background: #0c1f19;
-  --foreground: #F5F0E8;
-  --card: #102820;
-  --card-foreground: #F5F0E8;
-  --popover: #102820;
-  --popover-foreground: #F5F0E8;
-  --primary: #F5F0E8;
-  --primary-foreground: #0F4A3A;
-  --secondary: #1a3830;
-  --secondary-foreground: #F5F0E8;
-  --muted: #1a3830;
-  --muted-foreground: #a8b8b0;
-  --accent: #B89A5A;
-  --accent-foreground: #0c1f19;
-  --destructive: #e07070;
-  --border: #1f4a3c;
-  --input: #1a3830;
-  --ring: #B89A5A;
-  --sidebar: #081612;
-  --sidebar-foreground: #F5F0E8;
-  --sidebar-primary: #B89A5A;
-  --sidebar-primary-foreground: #081612;
-  --sidebar-accent: #0F4A3A;
-  --sidebar-accent-foreground: #F5F0E8;
-  --sidebar-border: #145242;
-  --sidebar-ring: #B89A5A;
+  --sidebar: #141414;
+  --sidebar-foreground: #f7f6f3;
+  --sidebar-primary: #6e675f;
+  --sidebar-primary-foreground: #f7f6f3;
+  --sidebar-accent: #1f1f1f;
+  --sidebar-accent-foreground: #f7f6f3;
+  --sidebar-border: #3a3a3a;
+  --sidebar-ring: #6e675f;
 }
 
 @layer base {
@@ -121,35 +93,136 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply bg-background text-foreground overflow-x-hidden antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    background-image:
+      radial-gradient(ellipse 100% 80% at 50% -20%, rgba(110, 103, 95, 0.06), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 100% 50%, rgba(20, 20, 20, 0.02), transparent 50%);
   }
   html {
     @apply font-sans;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading), Georgia, serif;
-    @apply tracking-tight font-medium text-primary;
+    font-family: var(--font-heading), "Cormorant Garamond", Georgia, serif;
+    @apply tracking-[0.02em] font-normal text-foreground;
   }
 }
 
 @layer utilities {
   .font-heading {
-    font-family: var(--font-heading), Georgia, serif;
+    font-family: var(--font-heading), "Cormorant Garamond", Georgia, serif;
   }
   .label-caps {
-    @apply text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-muted-foreground font-medium;
+    @apply font-sans text-[0.58rem] sm:text-[0.62rem] uppercase tracking-[0.24em] sm:tracking-[0.28em] text-muted-foreground font-medium;
   }
-  .text-balance {
-    text-wrap: balance;
+
+  /* Perfume boutique typography */
+  .font-product {
+    font-family: var(--font-heading), "Cormorant Garamond", Georgia, serif;
+    @apply font-normal tracking-[0.04em] leading-snug;
   }
+  .product-brand {
+    @apply font-sans text-[0.58rem] sm:text-[0.62rem] uppercase tracking-[0.3em] text-muted-foreground font-medium;
+  }
+  .price-display {
+    @apply font-sans text-sm font-semibold tabular-nums tracking-[0.06em] text-foreground;
+  }
+  .price-display-card {
+    @apply font-sans text-sm font-semibold tabular-nums tracking-[0.06em] text-foreground;
+  }
+
+  /* Section backgrounds — alternating editorial rhythm */
+  .section-parchment { @apply bg-background; }
+  .section-cream { @apply bg-brand-cream; }
+  .section-sand { @apply bg-secondary/60; }
+  .section-oud {
+    @apply bg-brand-oud text-white;
+    background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 255, 255, 0.04), transparent 60%);
+  }
+
+  /* Text on images */
+  .overlay-content { @apply text-white; }
+  .overlay-content h1,
+  .overlay-content h2,
+  .overlay-content h3,
+  .overlay-content h4,
+  .overlay-content h5,
+  .overlay-content h6 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55);
+  }
+  .overlay-content p {
+    @apply text-white/92;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+  }
+  .overlay-content .label-caps,
+  .overlay-content .text-brand-gold {
+    color: #c8c6c0 !important;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+  }
+
+  .scrim-hero {
+    background: linear-gradient(105deg, rgba(20, 20, 20, 0.93) 0%, rgba(20, 20, 20, 0.75) 40%, rgba(20, 20, 20, 0.4) 70%, rgba(20, 20, 20, 0.15) 100%);
+  }
+  .scrim-bottom {
+    background: linear-gradient(to top, rgba(20, 20, 20, 0.96) 0%, rgba(20, 20, 20, 0.75) 42%, rgba(20, 20, 20, 0.3) 75%, transparent 100%);
+  }
+  .scrim-center {
+    background: linear-gradient(to right, rgba(20, 20, 20, 0.9) 0%, rgba(20, 20, 20, 0.68) 50%, rgba(20, 20, 20, 0.38) 100%);
+  }
+
+  .gold-line {
+    background: linear-gradient(90deg, transparent 0%, #6e675f 50%, transparent 100%);
+    height: 1px;
+  }
+  .oud-accent-bar {
+    @apply h-px w-10 bg-brand-gold/70;
+  }
+  .brand-gradient {
+    background: linear-gradient(165deg, #141414 0%, #1f1f1f 48%, #141414 100%);
+  }
+  .luxury-gradient {
+    background: linear-gradient(165deg, #0f0f0f 0%, #1f1f1f 42%, #141414 100%);
+  }
+
+  .perfume-pedestal {
+    @apply bg-brand-espresso;
+  }
+  .product-image-frame {
+    @apply flex items-center justify-center overflow-hidden bg-brand-espresso;
+  }
+
+  .luxury-card {
+    @apply bg-card rounded-xl border border-border/70 shadow-[0_2px_24px_-8px_rgba(28,20,14,0.08)];
+  }
+  .fragrance-panel {
+    @apply bg-card rounded-xl border border-border/70 shadow-[0_2px_24px_-8px_rgba(28,20,14,0.08)] p-6 sm:p-8;
+  }
+
+  /* Product card — neutral unisex theme */
+  .product-card {
+    @apply relative overflow-hidden rounded-xl border border-border bg-card shadow-[0_2px_20px_-8px_rgba(20,20,20,0.08)] transition-all duration-500;
+  }
+  .product-card:hover {
+    @apply border-brand-gold/40 shadow-[0_16px_40px_-12px_rgba(20,20,20,0.14)];
+  }
+  .product-card__media {
+    @apply relative overflow-hidden bg-brand-espresso;
+  }
+  .product-card__body {
+    @apply border-t border-border bg-card;
+  }
+  .product-card__wishlist {
+    @apply bg-black/50 backdrop-blur-sm border border-white/20 text-white hover:bg-white hover:text-brand-espresso hover:border-white transition-colors;
+  }
+  .product-card__wishlist-active {
+    @apply bg-white border-white text-brand-espresso;
+  }
+
+  .text-balance { text-wrap: balance; }
   .scrollbar-none {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
-  }
-  .brand-gradient {
-    background: linear-gradient(135deg, #0F4A3A 0%, #145242 50%, #0F4A3A 100%);
-  }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
 }

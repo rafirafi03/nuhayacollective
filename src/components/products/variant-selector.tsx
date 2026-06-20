@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import type { Product, ProductColor } from "@/types";
-import { getProductSizes, getVariantStock } from "@/lib/dress-variants";
+import { getProductVolumes, getVariantStock } from "@/lib/fragrance-variants";
 
 interface VariantSelectorProps {
   product: Product;
@@ -19,42 +19,35 @@ export function VariantSelector({
   onSizeChange,
   onColorChange,
 }: VariantSelectorProps) {
-  const sizes = getProductSizes(product);
-  const colors = product.colors ?? [];
+  const volumes = getProductVolumes(product);
+  const concentrations = product.colors ?? [];
 
   return (
     <div className="space-y-5 mb-6">
-      {colors.length > 0 && (
+      {concentrations.length > 0 && (
         <div>
           <p className="label-caps mb-3">
-            Color — <span className="text-foreground normal-case tracking-normal font-medium">{selectedColor}</span>
+            Concentration — <span className="text-foreground normal-case tracking-normal font-medium">{selectedColor}</span>
           </p>
-          <div className="flex flex-wrap gap-3">
-            {colors.map((color: ProductColor) => {
-              const inStock = sizes.some((size) => getVariantStock(product, size, color.name) > 0);
-              const isSelected = selectedColor === color.name;
+          <div className="flex flex-wrap gap-2">
+            {concentrations.map((conc: ProductColor) => {
+              const inStock = volumes.some((vol) => getVariantStock(product, vol, conc.name) > 0);
+              const isSelected = selectedColor === conc.name;
               return (
                 <button
-                  key={color.name}
+                  key={conc.name}
                   type="button"
                   disabled={!inStock}
-                  onClick={() => onColorChange(color.name)}
-                  title={color.name}
-                  aria-label={`Color ${color.name}`}
-                  aria-pressed={isSelected}
+                  onClick={() => onColorChange(conc.name)}
                   className={cn(
-                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
-                    isSelected ? "border-primary" : "border-transparent hover:border-primary/40",
-                    !inStock && "opacity-40 cursor-not-allowed"
+                    "px-4 h-10 rounded-full border text-xs sm:text-sm font-medium transition-colors",
+                    isSelected
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-background border-border/80 hover:border-primary/40 text-foreground",
+                    !inStock && "opacity-40 cursor-not-allowed line-through"
                   )}
                 >
-                  <span
-                    className={cn(
-                      "block h-7 w-7 rounded-full border border-black/10",
-                      isSelected && "ring-2 ring-primary ring-offset-1 ring-offset-background"
-                    )}
-                    style={{ backgroundColor: color.hex }}
-                  />
+                  {conc.name}
                 </button>
               );
             })}
@@ -64,36 +57,36 @@ export function VariantSelector({
 
       <div>
         <p className="label-caps mb-3">
-          Size — <span className="text-foreground normal-case tracking-normal font-medium">{selectedSize}</span>
+          Volume — <span className="text-foreground normal-case tracking-normal font-medium">{selectedSize}</span>
         </p>
         <div className="flex flex-wrap gap-2">
-          {sizes.map((size) => {
+          {volumes.map((volume) => {
             const stock = selectedColor
-              ? getVariantStock(product, size, selectedColor)
+              ? getVariantStock(product, volume, selectedColor)
               : product.stock;
             const available = stock > 0;
-            const isSelected = selectedSize === size;
+            const isSelected = selectedSize === volume;
             return (
               <button
-                key={size}
+                key={volume}
                 type="button"
                 disabled={!available}
-                onClick={() => onSizeChange(size)}
+                onClick={() => onSizeChange(volume)}
                 className={cn(
-                  "min-w-[2.75rem] h-10 px-3 rounded-full border text-sm font-medium transition-colors",
+                  "min-w-[3.5rem] h-10 px-3 rounded-full border text-sm font-medium transition-colors",
                   isSelected
                     ? "bg-primary text-primary-foreground border-primary"
                     : "bg-background border-border/80 hover:border-primary/40 text-foreground",
                   !available && "opacity-40 line-through cursor-not-allowed"
                 )}
               >
-                {size}
+                {volume}
               </button>
             );
           })}
         </div>
         <p className="text-xs text-muted-foreground mt-2">
-          True to size · Model wears size S
+          Long-lasting luxury · Apply to pulse points
         </p>
       </div>
     </div>

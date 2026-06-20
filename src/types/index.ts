@@ -29,6 +29,18 @@ export interface VariantStock {
   stock: number;
 }
 
+export interface InstagramReel {
+  _id: string;
+  title?: string;
+  caption?: string;
+  reelUrl: string;
+  thumbnailUrl?: string;
+  productId?: string;
+  productName?: string;
+  featured?: boolean;
+  order?: number;
+}
+
 export interface Product {
   _id: string;
   name: string;
@@ -42,7 +54,9 @@ export interface Product {
   category?: Category;
   brand?: Brand;
   variants?: ProductVariant[];
+  /** Fragrance volumes e.g. 30ml, 50ml, 100ml */
   sizes?: string[];
+  /** Fragrance concentrations e.g. EDP, Parfum, Attar */
   colors?: ProductColor[];
   variantStock?: VariantStock[];
   stock: number;
@@ -53,6 +67,7 @@ export interface Product {
   specifications?: { key: string; value: string }[];
   features?: string[];
   tags?: string[];
+  instagramReels?: InstagramReel[];
   seoTitle?: string;
   seoDescription?: string;
   _createdAt?: string;

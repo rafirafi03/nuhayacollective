@@ -1,31 +1,48 @@
 import { Container } from "@/components/shared/container";
+import { PageHeader } from "@/components/shared/page-header";
 import { getCategories } from "@/services/content-service";
 import Link from "next/link";
-import Image from "next/image";
+import { SafeImage } from "@/components/shared/safe-image";
+import { categoryImage } from "@/lib/images";
 
 export default async function CategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <Container className="py-8">
-      <h1 className="text-2xl font-bold mb-8">All Categories</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {categories.map((cat) => (
-          <Link key={cat._id} href={`/products?category=${cat.slug.current}`} className="group">
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-muted">
-              {cat.imageUrl && (
-                <Image src={cat.imageUrl} alt={cat.name} fill className="object-cover transition-transform group-hover:scale-105" />
-              )}
-              <div className="absolute inset-0 bg-black/30 flex items-end p-4">
-                <div className="text-white">
-                  <h3 className="font-semibold">{cat.name}</h3>
-                  {cat.productCount && <p className="text-xs opacity-80">{cat.productCount} products</p>}
+    <div className="section-parchment min-h-[60vh]">
+      <Container className="py-10 sm:py-14">
+        <PageHeader
+          label="Collections"
+          title="Explore by Scent Family"
+          subtitle="From deep Hindi oud to fresh Arabian blends — find your signature."
+        />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+          {categories.map((cat, i) => (
+            <Link key={cat._id} href={`/products?category=${cat.slug.current}`} className="group">
+              <div className="luxury-card p-1.5 overflow-hidden transition-all duration-500 group-hover:border-brand-gold/40">
+                <div className="relative aspect-square overflow-hidden rounded-lg bg-brand-oud">
+                  <SafeImage
+                    src={cat.imageUrl || categoryImage(i)}
+                    alt={cat.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.88]"
+                    sizes="(max-width: 768px) 45vw, 25vw"
+                  />
+                  <div className="absolute inset-0 scrim-bottom" />
+                  <div className="overlay-content absolute inset-x-0 bottom-0 z-10 p-4">
+                    <h3 className="font-heading text-base sm:text-lg font-medium">{cat.name}</h3>
+                    {cat.productCount && (
+                      <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gold mt-1">
+                        {cat.productCount} fragrances
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </Container>
+            </Link>
+          ))}
+        </div>
+      </Container>
+    </div>
   );
 }

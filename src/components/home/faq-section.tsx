@@ -7,26 +7,28 @@ import type { FAQ } from "@/types";
 
 export function FAQSection({ faqs }: { faqs: FAQ[] }) {
   return (
-    <section className="py-14 sm:py-20 md:py-24 bg-muted/30">
+    <section className="py-16 sm:py-22 md:py-26 section-cream">
       <Container className="max-w-3xl">
         <SectionHeading
-          title="Frequently Asked Questions"
-          subtitle="Everything you need to know about shopping with us."
-          label="Help"
+          title="Fragrance Guide"
+          subtitle="Everything you need to know about our oud perfumes and ordering."
+          label="FAQ"
         />
         <MotionWrapper>
-          <Accordion className="w-full divide-y divide-border/60">
-            {faqs.map((faq) => (
-              <AccordionItem key={faq._id} value={faq._id} className="border-0 py-1">
-                <AccordionTrigger className="text-left font-medium text-sm tracking-wide py-5 hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="fragrance-panel">
+            <Accordion className="w-full">
+              {faqs.map((faq) => (
+                <AccordionItem key={faq._id} value={faq._id} className="border-border/60 py-1">
+                  <AccordionTrigger className="text-left font-heading text-base sm:text-lg py-5 hover:no-underline hover:text-brand-amber">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </MotionWrapper>
       </Container>
     </section>

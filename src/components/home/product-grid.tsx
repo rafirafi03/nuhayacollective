@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeIn } from "@/components/shared/motion";
 import type { Product } from "@/types";
+import { cn } from "@/lib/utils";
 
 interface ProductGridProps {
   products: Product[];
@@ -15,18 +16,19 @@ interface ProductGridProps {
   subtitle?: string;
   label?: string;
   viewAllHref?: string;
+  variant?: "parchment" | "cream" | "sand";
 }
 
-export function ProductGrid({ products, title, subtitle, label, viewAllHref }: ProductGridProps) {
+export function ProductGrid({ products, title, subtitle, label, viewAllHref, variant = "parchment" }: ProductGridProps) {
   if (products.length === 0) return null;
 
   return (
-    <section className="py-14 sm:py-20 md:py-24">
+    <section className={cn("py-16 sm:py-22 md:py-26", variant === "cream" && "section-cream", variant === "sand" && "section-sand", variant === "parchment" && "section-parchment")}>
       <Container>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end justify-between mb-10 sm:mb-12 md:mb-14">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end justify-between mb-10 sm:mb-12">
           <SectionHeading title={title} subtitle={subtitle} label={label} align="left" className="mb-0" />
           {viewAllHref && (
-            <Button variant="outline" className="w-full sm:w-auto shrink-0 rounded-full" asChild>
+            <Button variant="outline" className="w-full sm:w-auto shrink-0 border-border hover:border-brand-gold hover:text-brand-amber" asChild>
               <Link href={viewAllHref}>
                 View All <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
@@ -34,7 +36,7 @@ export function ProductGrid({ products, title, subtitle, label, viewAllHref }: P
           )}
         </div>
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 md:gap-7"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"

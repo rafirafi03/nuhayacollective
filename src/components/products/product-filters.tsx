@@ -53,7 +53,7 @@ export function ProductFilters({
     filters.category ||
     filters.brand ||
     filters.priceRange[0] > 0 ||
-    filters.priceRange[1] < 15000;
+    filters.priceRange[1] < 20000;
 
   return (
     <div className={cn("space-y-4", className)}>
@@ -72,7 +72,7 @@ export function ProductFilters({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Dress name, style..."
+            placeholder="Fragrance name, oud type..."
             value={filters.search}
             onChange={(e) => onChange({ search: e.target.value })}
             className="pl-9 h-10 rounded-full bg-background"
@@ -147,7 +147,7 @@ export function ProductFilters({
       <FilterSection title="Price">
         <Slider
           min={0}
-          max={15000}
+          max={20000}
           step={500}
           value={filters.priceRange}
           onValueChange={(v) => {
@@ -198,10 +198,10 @@ export function ActiveFilterChips({
     const name = brands.find((b) => b.slug.current === filters.brand)?.name ?? filters.brand;
     chips.push({ label: name, clear: () => onChange({ brand: "" }) });
   }
-  if (filters.priceRange[0] > 0 || filters.priceRange[1] < 15000) {
+  if (filters.priceRange[0] > 0 || filters.priceRange[1] < 20000) {
     chips.push({
       label: `₹${filters.priceRange[0].toLocaleString()} – ₹${filters.priceRange[1].toLocaleString()}`,
-      clear: () => onChange({ priceRange: [0, 15000] }),
+      clear: () => onChange({ priceRange: [0, 20000] }),
     });
   }
 

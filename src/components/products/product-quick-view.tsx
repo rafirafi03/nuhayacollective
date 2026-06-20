@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { useCartStore } from "@/store/cart-store";
 import { useWishlistStore } from "@/store/wishlist-store";
 import { formatPrice, calculateDiscount, getProductImageUrl } from "@/utils/format";
-import { productHasVariants } from "@/lib/dress-variants";
+import { productHasVariants } from "@/lib/fragrance-variants";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types";
 import { toast } from "sonner";

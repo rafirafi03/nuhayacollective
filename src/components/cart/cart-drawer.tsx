@@ -15,10 +15,10 @@ export function CartDrawer() {
 
   return (
     <Sheet open={isOpen} onOpenChange={setCartOpen}>
-      <SheetContent className="flex w-full max-w-[min(100vw,24rem)] flex-col p-4 sm:p-6 bg-background">
+      <SheetContent className="flex w-full max-w-[min(100vw,24rem)] flex-col p-4 sm:p-6 bg-brand-cream border-l border-border/60">
         <SheetHeader>
-          <SheetTitle className="flex items-center gap-2 font-heading text-primary">
-            <ShoppingBag className="h-5 w-5" />
+          <SheetTitle className="flex items-center gap-2 font-heading">
+            <ShoppingBag className="h-5 w-5 text-brand-amber" />
             Your Bag ({getItemCount()})
           </SheetTitle>
         </SheetHeader>
@@ -33,8 +33,8 @@ export function CartDrawer() {
               >
                 <ShoppingBag className="h-12 w-12 mb-4 opacity-30" />
                 <p>Your bag is empty</p>
-                <Button variant="link" onClick={() => setCartOpen(false)} asChild>
-                  <Link href="/products">Browse Dresses</Link>
+                <Button variant="link" className="text-brand-amber" onClick={() => setCartOpen(false)} asChild>
+                  <Link href="/products">Browse Fragrances</Link>
                 </Button>
               </motion.div>
             ) : (
@@ -47,19 +47,19 @@ export function CartDrawer() {
                   exit={{ opacity: 0, x: -20 }}
                   className="flex gap-4 py-4 border-b border-border/40 last:border-0"
                 >
-                  <div className="relative h-24 w-20 rounded-sm overflow-hidden bg-muted shrink-0">
-                    <Image src={item.imageUrl || PRODUCT_IMAGE_FALLBACK} alt={item.name} fill className="object-cover" />
+                  <div className="relative h-24 w-20 rounded-lg overflow-hidden perfume-pedestal shrink-0 ring-1 ring-border/40">
+                    <Image src={item.imageUrl || PRODUCT_IMAGE_FALLBACK} alt={item.name} fill className="object-contain p-2" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <Link href={`/products/${item.slug}`} className="font-medium text-sm hover:text-primary line-clamp-2" onClick={() => setCartOpen(false)}>
+                    <Link href={`/products/${item.slug}`} className="font-medium text-sm hover:text-brand-amber line-clamp-2" onClick={() => setCartOpen(false)}>
                       {item.name}
                     </Link>
                     {(item.color || item.size) && (
                       <p className="text-xs text-muted-foreground mt-0.5">
-                        {[item.color, item.size ? `Size ${item.size}` : undefined].filter(Boolean).join(" · ")}
+                        {[item.color, item.size].filter(Boolean).join(" · ")}
                       </p>
                     )}
-                    <p className="text-sm font-semibold mt-1 text-primary">{formatPrice(item.price)}</p>
+                    <p className="text-sm font-semibold mt-1">{formatPrice(item.price)}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <Button variant="outline" size="icon" className="h-7 w-7 rounded-full" onClick={() => updateQuantity(item.cartLineId, item.quantity - 1)}>
                         <Minus className="h-3 w-3" />
@@ -81,14 +81,14 @@ export function CartDrawer() {
 
         {items.length > 0 && (
           <SheetFooter className="flex-col gap-3 sm:flex-col border-t border-border/60 pt-4">
-            <div className="flex justify-between w-full text-lg font-semibold text-primary">
+            <div className="flex justify-between w-full text-lg font-semibold">
               <span>Subtotal</span>
               <span>{formatPrice(getTotal())}</span>
             </div>
-            <Button className="w-full rounded-full" asChild onClick={() => setCartOpen(false)}>
+            <Button variant="luxury" className="w-full rounded-full" asChild onClick={() => setCartOpen(false)}>
               <Link href="/cart">View Bag</Link>
             </Button>
-            <Button variant="outline" className="w-full rounded-full border-primary text-primary" asChild onClick={() => setCartOpen(false)}>
+            <Button variant="outline" className="w-full rounded-full border-brand-gold/50 hover:border-brand-gold" asChild onClick={() => setCartOpen(false)}>
               <Link href="/checkout">Checkout via WhatsApp</Link>
             </Button>
           </SheetFooter>

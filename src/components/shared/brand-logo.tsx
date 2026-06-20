@@ -3,36 +3,28 @@ import { BRAND_NAME, BRAND_TAGLINE } from "@/lib/constants";
 
 interface BrandLogoProps {
   className?: string;
-  nameClassName?: string;
-  taglineClassName?: string;
   variant?: "default" | "light";
 }
 
-export function BrandLogo({
-  className,
-  nameClassName,
-  taglineClassName,
-  variant = "default",
-}: BrandLogoProps) {
+export function BrandLogo({ className, variant = "default" }: BrandLogoProps) {
   return (
-    <span className={cn("flex flex-col leading-none gap-0.5", className)}>
+    <span className={cn("inline-flex flex-col leading-none", className)}>
       <span
         className={cn(
-          "font-heading text-xl sm:text-2xl md:text-[1.85rem] font-semibold tracking-[0.04em]",
-          variant === "light" ? "text-white" : "text-primary",
-          nameClassName
+          "font-heading text-lg sm:text-xl md:text-2xl font-medium tracking-[0.18em] uppercase",
+          variant === "light" ? "text-white" : "text-foreground"
         )}
       >
         {BRAND_NAME}
+        <span className="font-light normal-case tracking-[0.06em] ml-1">{BRAND_TAGLINE}</span>
       </span>
       <span
         className={cn(
-          "label-caps text-[0.55rem] sm:text-[0.6rem] tracking-[0.28em]",
-          variant === "light" ? "text-white/70" : "text-accent",
-          taglineClassName
+          "mt-1.5 label-caps tracking-[0.32em]",
+          variant === "light" ? "text-white/55" : "text-muted-foreground"
         )}
       >
-        {BRAND_TAGLINE}
+        Unisex Ouds
       </span>
     </span>
   );

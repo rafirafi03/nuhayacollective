@@ -19,32 +19,43 @@ export function SectionHeading({
   label,
   className,
   align = "center",
+  dark = false,
 }: {
   title: string;
   subtitle?: string;
   label?: string;
   className?: string;
   align?: "left" | "center";
+  dark?: boolean;
 }) {
   return (
     <div className={cn("mb-12 md:mb-14", align === "center" && "text-center", className)}>
       {label && (
-        <p className={cn("label-caps mb-3", align === "center" && "mx-auto")}>{label}</p>
+        <p className={cn("label-caps mb-3", dark ? "text-brand-gold" : "text-brand-amber", align === "center" && "mx-auto")}>
+          {label}
+        </p>
       )}
-      <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.15] text-balance">
+      <div className={cn("oud-accent-bar mb-5", align === "center" && "mx-auto", dark && "bg-brand-gold")} />
+      <h2
+        className={cn(
+          "font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] leading-[1.1] text-balance tracking-tight",
+          dark && "!text-white"
+        )}
+      >
         {title}
       </h2>
       {subtitle && (
-        <p className={cn(
-          "mt-4 text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl",
-          align === "center" && "mx-auto"
-        )}>
+        <p
+          className={cn(
+            "mt-4 text-base md:text-lg leading-relaxed max-w-xl",
+            dark ? "text-white/70" : "text-muted-foreground",
+            align === "center" && "mx-auto"
+          )}
+        >
           {subtitle}
         </p>
       )}
-      {align === "center" && (
-        <div className="mt-6 mx-auto h-px w-12 bg-accent/60" />
-      )}
+      {align === "center" && !dark && <div className="mt-6 mx-auto gold-line w-20 opacity-60" />}
     </div>
   );
 }
