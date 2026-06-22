@@ -1,7 +1,7 @@
 "use client";
 
 import { SafeImage } from "@/components/shared/safe-image";
-import { unsplashUrl, UNSPLASH } from "@/lib/images";
+import { promoImage } from "@/lib/images";
 import Link from "next/link";
 import { Container } from "@/components/shared/container";
 import { motion } from "framer-motion";
@@ -26,10 +26,10 @@ export function PromotionalBanners({ banners }: { banners: Banner[] }) {
             >
               <Link
                 href={banner.link || "/products"}
-                className="group block relative overflow-hidden rounded-2xl ring-1 ring-white/15 bg-brand-green-dark min-h-[200px] sm:min-h-[220px]"
+                className="group block relative overflow-hidden rounded-2xl ring-1 ring-white/15 bg-brand-wine-dark min-h-[200px] sm:min-h-[220px]"
               >
                 <SafeImage
-                  src={banner.imageUrl || unsplashUrl(UNSPLASH.promo, 1200)}
+                  src={banner.imageUrl || promoImage(1200)}
                   alt={banner.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

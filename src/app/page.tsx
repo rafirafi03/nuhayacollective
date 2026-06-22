@@ -1,7 +1,8 @@
 import { HeroBanner } from "@/components/home/hero-banner";
+import { TrustBar } from "@/components/home/trust-bar";
 import { CategoryBento } from "@/components/home/category-bento";
-import { FeaturedSpotlight } from "@/components/home/featured-spotlight";
-import { BrandStoryStrip } from "@/components/home/brand-story-strip";
+import { NewArrivalsSection } from "@/components/home/new-arrivals-section";
+import { BridalShowcase } from "@/components/home/bridal-showcase";
 import { ProductTabs } from "@/components/home/product-tabs";
 import { InstagramReelsSection } from "@/components/home/instagram-reels-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
@@ -29,10 +30,13 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroBanner banners={banners} />
+      <HeroBanner banners={banners} featuredProducts={featured} />
+      <TrustBar />
       <CategoryBento categories={categories} />
-      <FeaturedSpotlight products={featured} />
-      <BrandStoryStrip banners={banners} />
+      <NewArrivalsSection products={newArrivals.length ? newArrivals : featured} />
+      <BridalShowcase
+        products={featured.filter((p) => p.category?.slug.current === "bridal-collection")}
+      />
       <ProductTabs featured={featured} newArrivals={newArrivals} bestSellers={bestSellers} />
       <InstagramReelsSection reels={reels} />
       <TestimonialsSection testimonials={testimonials} />

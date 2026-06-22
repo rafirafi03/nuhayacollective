@@ -59,7 +59,7 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
   if (layout === "spotlight") {
     return (
       <Link href={productHref} className={cn("group block overflow-hidden bg-white border border-border hover:border-primary/20 transition-colors", className)}>
-        <div className="relative aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-[#f0f0ee]">
+        <div className="relative aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-[#f5f0e8]">
           <SafeImage
             src={imageUrl}
             alt={product.name}
@@ -81,7 +81,7 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
   if (layout === "compact") {
     return (
       <Link href={productHref} className={cn("group flex gap-4 p-5 bg-white border border-border hover:border-primary/20 transition-colors", className)}>
-        <div className="relative size-20 sm:size-24 shrink-0 overflow-hidden bg-brand-mint">
+        <div className="relative size-20 sm:size-24 shrink-0 overflow-hidden bg-[#f5f0e8]">
           <SafeImage src={imageUrl} alt={product.name} fill className="object-cover" sizes="96px" />
         </div>
         <div className="flex flex-col justify-center min-w-0 flex-1">
@@ -120,7 +120,7 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
                 <Link href={productHref}>Select Options</Link>
               </Button>
             ) : (
-              <Button size="sm" className="flex-1 rounded-full bg-primary text-white hover:bg-brand-green-dark" onClick={handleAddToCart}>
+              <Button size="sm" className="flex-1 rounded-full bg-primary text-white hover:bg-brand-wine-dark" onClick={handleAddToCart}>
                 <ShoppingBag className="h-3.5 w-3.5 mr-1.5" />Add to Bag
               </Button>
             )}
@@ -201,7 +201,7 @@ export function ProductCard({ product, onQuickView, className, layout = "grid" }
                 <Link href={productHref}>Select Options</Link>
               </Button>
             ) : (
-              <Button size="sm" className="flex-1 min-w-0 rounded-full h-9 text-xs font-sans tracking-wide bg-primary text-white hover:bg-brand-green-dark" onClick={handleAddToCart}>
+              <Button size="sm" className="flex-1 min-w-0 rounded-full h-9 text-xs font-sans tracking-wide bg-primary text-white hover:bg-brand-wine-dark" onClick={handleAddToCart}>
                 <ShoppingBag className="h-3 w-3 mr-1.5 shrink-0" /> Add to Bag
               </Button>
             )}

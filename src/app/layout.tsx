@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -10,26 +10,28 @@ import { Toaster } from "@/components/ui/sonner";
 import { APP_NAME, APP_URL, BRAND_NAME, BRAND_TAGLINE, BRAND_LOGO_PATH } from "@/lib/constants";
 import { generateOrganizationJsonLd, brandLogoMetadata } from "@/utils/seo";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-heading",
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const jost = Jost({
   subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
+const siteDescription = `Discover handcrafted fine jewellery at ${BRAND_NAME} ${BRAND_TAGLINE}. Rings, necklaces, earrings, and bridal collections with WhatsApp ordering.`;
+
 export const metadata: Metadata = {
   title: {
-    default: `${APP_NAME} — Premium Oud & Attar Fragrances`,
+    default: `${APP_NAME} — Fine Rings, Necklaces & Bridal`,
     template: `%s | ${APP_NAME}`,
   },
-  description: `Discover premium oud perfumes and attars at ${BRAND_NAME} ${BRAND_TAGLINE}. Shop curated Arabian fragrances with WhatsApp ordering.`,
+  description: siteDescription,
   metadataBase: new URL(APP_URL),
   icons: {
     icon: [{ url: BRAND_LOGO_PATH, type: "image/jpeg" }],
@@ -40,15 +42,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: APP_URL,
     siteName: APP_NAME,
-    title: `${APP_NAME} — Premium Oud & Attar Fragrances`,
-    description: `Discover premium oud perfumes and attars at ${BRAND_NAME} ${BRAND_TAGLINE}. Shop curated Arabian fragrances with WhatsApp ordering.`,
+    title: `${APP_NAME} — Fine Rings, Necklaces & Bridal`,
+    description: siteDescription,
     images: [brandLogoMetadata],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${APP_NAME} — Premium Oud & Attar Fragrances`,
-    description: `Discover premium oud perfumes and attars at ${BRAND_NAME} ${BRAND_TAGLINE}. Shop curated Arabian fragrances with WhatsApp ordering.`,
-    images: [BRAND_LOGO_PATH],
+    title: `${APP_NAME} — Fine Rings, Necklaces & Bridal`,
+    description: siteDescription,
+    images: [brandLogoMetadata],
   },
   robots: {
     index: true,
@@ -62,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable} h-full`}>
+    <html lang="en" className={`${cormorant.variable} ${jost.variable} h-full`}>
       <head>
         <script
           type="application/ld+json"

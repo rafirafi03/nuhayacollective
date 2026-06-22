@@ -19,20 +19,25 @@ interface InstagramReelsSectionProps {
 export function InstagramReelsSection({
   reels,
   title = "From the Atelier",
-  subtitle = "Watch our latest reels on site, or open on Instagram.",
+  subtitle = "Watch our latest reels — styling tips, new arrivals, and behind-the-scenes craft.",
   label = "Instagram",
 }: InstagramReelsSectionProps) {
   const featured = reels.filter((r) => r.featured !== false).slice(0, 6);
   if (featured.length === 0) return null;
 
   return (
-    <section className="py-20 sm:py-24 bg-[#fafaf9] border-t border-border/60">
+    <section className="py-20 sm:py-24 bg-white border-t border-border/60">
       <Container>
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-3 lg:sticky lg:top-24">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-3 lg:sticky lg:top-24"
+          >
             <p className="label-caps mb-4">{label}</p>
-            <div className="oud-accent-bar mb-5" />
-            <h2 className="font-heading text-2xl sm:text-3xl leading-tight mb-4 font-normal text-foreground">{title}</h2>
+            <div className="jewel-accent-bar mb-5" />
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl leading-tight mb-4 font-normal text-foreground">{title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-8 text-sm">{subtitle}</p>
             <Link
               href={INSTAGRAM_URL}
@@ -43,17 +48,17 @@ export function InstagramReelsSection({
               @{INSTAGRAM_HANDLE}
               <ExternalLink className="size-3 w-3 opacity-60" />
             </Link>
-          </div>
+          </motion.div>
 
           <div className="lg:col-span-9 flex gap-3 sm:gap-4 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
             {featured.map((reel, i) => (
               <motion.div
                 key={reel._id}
                 className="snap-start"
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.05 }}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
               >
                 <InstagramReelCard reel={reel} index={i} variant="carousel" />
               </motion.div>

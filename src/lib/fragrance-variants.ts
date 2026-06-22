@@ -1,17 +1,22 @@
 import type { Product } from "@/types";
 
-export const FRAGRANCE_VOLUMES = ["12ml", "30ml", "50ml", "100ml"] as const;
+export const JEWELRY_RING_SIZES = ["6", "7", "8", "9", "10"] as const;
+export const JEWELRY_CHAIN_LENGTHS = ['16"', '18"', '20"', '22"'] as const;
+/** @deprecated use product-specific sizes */
+export const FRAGRANCE_VOLUMES = [...JEWELRY_RING_SIZES] as const;
 
-export type FragranceVolume = (typeof FRAGRANCE_VOLUMES)[number];
+export type JewelryRingSize = (typeof JEWELRY_RING_SIZES)[number];
+/** @deprecated */
+export type FragranceVolume = JewelryRingSize;
 
 export function getCartLineId(productId: string, size?: string, color?: string) {
   return `${productId}::${size || "default"}::${color || "default"}`;
 }
 
-/** sizes field stores fragrance volumes (e.g. 50ml, 100ml) */
+/** sizes field stores ring size or chain length */
 export function getProductVolumes(product: Product): string[] {
   if (product.sizes?.length) return product.sizes;
-  return [...FRAGRANCE_VOLUMES];
+  return [...JEWELRY_RING_SIZES];
 }
 
 /** @deprecated use getProductVolumes */

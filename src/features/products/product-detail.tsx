@@ -34,7 +34,7 @@ interface ProductDetailProps {
 export function ProductDetail({ product, reviews, relatedProducts }: ProductDetailProps) {
   const volumes = getProductVolumes(product);
   const defaultConcentration = product.colors?.[0]?.name ?? "";
-  const defaultVolume = volumes.find((v) => defaultConcentration && getVariantStock(product, v, defaultConcentration) > 0) ?? volumes[0] ?? "50ml";
+  const defaultVolume = volumes.find((v) => defaultConcentration && getVariantStock(product, v, defaultConcentration) > 0) ?? volumes[0] ?? "7";
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(defaultVolume);
@@ -148,7 +148,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
 
       <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-14 items-start">
         <div className="lg:sticky lg:top-24 space-y-3">
-          <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[min(75vh,640px)] overflow-hidden rounded-xl bg-brand-mint cursor-zoom-in"
+          <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[min(75vh,640px)] overflow-hidden rounded-xl bg-[#f5f0e8] cursor-zoom-in"
             onClick={() => setZoomOpen(true)}
             role="button"
             tabIndex={0}
@@ -275,12 +275,12 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
               <Share2 className="h-4 w-4 mr-1" /> Share
             </Button>
             <Button variant="ghost" size="sm" className="rounded-full text-muted-foreground">
-              <Droplets className="h-4 w-4 mr-1" /> Fragrance Guide
+              <Droplets className="h-4 w-4 mr-1" /> Care Guide
             </Button>
           </div>
 
           {product.features && product.features.length > 0 && (
-            <div className="mt-4 fragrance-panel">
+            <div className="mt-4 jewel-panel">
               <h3 className="label-caps mb-3 text-brand-amber">Details</h3>
               <ul className="space-y-2">
                 {product.features.map((f, i) => (
@@ -299,7 +299,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
       <Tabs defaultValue="description">
         <TabsList className="w-full justify-start overflow-x-auto flex-nowrap h-auto p-1 gap-1 bg-secondary/50">
           <TabsTrigger value="description" className="shrink-0 text-xs sm:text-sm rounded-full">Description</TabsTrigger>
-          <TabsTrigger value="specifications" className="shrink-0 text-xs sm:text-sm rounded-full">Fragrance Notes</TabsTrigger>
+          <TabsTrigger value="specifications" className="shrink-0 text-xs sm:text-sm rounded-full">Specifications</TabsTrigger>
           <TabsTrigger value="reviews" className="shrink-0 text-xs sm:text-sm rounded-full">Reviews ({reviews.length})</TabsTrigger>
         </TabsList>
         <TabsContent value="description" className="mt-6 prose max-w-none">
@@ -316,7 +316,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground">Contact us for detailed fragrance profiling.</p>
+            <p className="text-muted-foreground">Contact us for detailed specifications and certification.</p>
           )}
         </TabsContent>
         <TabsContent value="reviews" className="mt-6 space-y-6">

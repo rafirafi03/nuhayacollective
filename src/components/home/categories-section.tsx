@@ -31,7 +31,7 @@ export function CategoriesSection({ categories }: { categories: Category[] }) {
               className="snap-start shrink-0 w-[160px] sm:w-[180px]"
             >
               <Link href={`/products?category=${category.slug.current}`} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-brand-mint ring-1 ring-border transition-all duration-300 group-hover:ring-primary/40 group-hover:shadow-[0_12px_32px_-10px_rgba(10,74,8,0.15)]">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#f5f0e8] ring-1 ring-border transition-all duration-300 group-hover:ring-[#4a1220]/40 group-hover:shadow-[0_12px_32px_-10px_rgba(74,18,32,0.18)]">
                   <SafeImage
                     src={category.imageUrl || categoryImage(i)}
                     alt={category.name}

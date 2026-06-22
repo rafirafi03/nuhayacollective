@@ -14,37 +14,57 @@ export function CategoryBento({ categories }: { categories: Category[] }) {
   if (featured.length === 0) return null;
 
   return (
-    <section className="py-20 sm:py-24 md:py-28 bg-white border-t border-border/60">
+    <section className="pt-14 pb-6 sm:pt-18 sm:pb-8 lg:py-24 bg-[#faf6f0] overflow-hidden">
       <Container>
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8 sm:mb-10"
+        >
           <div>
-            <p className="label-caps mb-4">Collections</p>
-            <div className="oud-accent-bar mb-5" />
-            <h2 className="font-heading text-3xl sm:text-4xl text-foreground leading-tight font-normal">
-              Explore by scent
+            <p className="label-caps mb-4">Categories</p>
+            <div className="jewel-accent-bar mb-5" />
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-foreground leading-tight font-normal">
+              Shop by collection
             </h2>
           </div>
           <Link
             href="/categories"
-            className="inline-flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.2em] font-medium text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.2em] font-medium text-primary hover:opacity-70 transition-opacity"
           >
             View all
             <ArrowUpRight className="size-3.5" />
           </Link>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-12 gap-2 sm:gap-3 auto-rows-[160px] sm:auto-rows-[220px]">
+        {/* Mobile + tablet: horizontal scroll */}
+        <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-1 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 lg:hidden">
           {featured.map((cat, i) => (
             <motion.div
               key={cat._id}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
+              className="snap-start shrink-0 w-[42vw] sm:w-[28vw]"
+            >
+              <CategoryTile category={cat} index={i} compact />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: asymmetric grid — not rendered on mobile to avoid layout gap */}
+        <div className="hidden lg:grid grid-cols-12 gap-3 auto-rows-[280px]">
+          {featured.map((cat, i) => (
+            <motion.div
+              key={cat._id}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.07 }}
               className={cn(
-                i === 0
-                  ? "col-span-2 lg:col-span-7 lg:row-span-2"
-                  : "col-span-1 lg:col-span-5"
+                i === 0 ? "col-span-5 row-span-2" : i === 1 ? "col-span-4" : "col-span-3"
               )}
             >
               <CategoryTile category={cat} index={i} large={i === 0} />
@@ -60,29 +80,34 @@ function CategoryTile({
   category,
   index,
   large = false,
+  compact = false,
 }: {
   category: Category;
   index: number;
   large?: boolean;
+  compact?: boolean;
 }) {
   return (
     <Link
       href={`/products?category=${category.slug.current}`}
-      className="group relative block h-full overflow-hidden bg-[#f0f0ee]"
+      className={cn(
+        "group relative block overflow-hidden bg-[#f5f0e8]",
+        compact ? "aspect-[3/4] w-full" : "h-full min-h-0"
+      )}
     >
       <SafeImage
         src={category.imageUrl || categoryImage(index)}
         alt={category.name}
         fill
-        className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.03]"
-        sizes={large ? "50vw" : "25vw"}
+        className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.05]"
+        sizes={large ? "40vw" : "25vw"}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 text-white">
-        <p className="text-[0.58rem] uppercase tracking-[0.24em] text-white/60 mb-2 font-medium">
-          {category.productCount ? `${category.productCount} fragrances` : "Collection"}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 text-[#faf6f0]">
+        <p className="text-[0.58rem] uppercase tracking-[0.24em] text-[#faf6f0]/60 mb-2 font-medium">
+          {category.productCount ? `${category.productCount} pieces` : "Collection"}
         </p>
-        <h3 className={cn("font-heading font-normal leading-tight", large ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl")}>
+        <h3 className={cn("font-heading font-normal leading-tight", large ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl")}>
           {category.name}
         </h3>
       </div>

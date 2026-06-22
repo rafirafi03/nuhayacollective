@@ -27,7 +27,7 @@ export function VariantSelector({
       {concentrations.length > 0 && (
         <div>
           <p className="label-caps mb-3">
-            Concentration — <span className="text-foreground normal-case tracking-normal font-medium">{selectedColor}</span>
+            Metal — <span className="text-foreground normal-case tracking-normal font-medium">{selectedColor}</span>
           </p>
           <div className="flex flex-wrap gap-2">
             {concentrations.map((conc: ProductColor) => {
@@ -57,7 +57,7 @@ export function VariantSelector({
 
       <div>
         <p className="label-caps mb-3">
-          Volume — <span className="text-foreground normal-case tracking-normal font-medium">{selectedSize}</span>
+          Size — <span className="text-foreground normal-case tracking-normal font-medium">{selectedSize}</span>
         </p>
         <div className="flex flex-wrap gap-2">
           {volumes.map((volume) => {
@@ -86,7 +86,7 @@ export function VariantSelector({
           })}
         </div>
         <p className="text-xs text-muted-foreground mt-2">
-          Long-lasting luxury · Apply to pulse points
+          Hallmarked gold · Insured shipping on qualifying orders
         </p>
       </div>
     </div>

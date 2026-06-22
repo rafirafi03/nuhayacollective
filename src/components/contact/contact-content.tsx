@@ -86,19 +86,19 @@ const helpTopics = [
     icon: Package,
     title: "Orders & Delivery",
     text: "Track an order, change details, or ask about shipping timelines.",
-    message: "Hello Ibadah Perfumes, I have a question about my order or delivery.",
+    message: "Hello Saanz by Sana, I have a question about my order or delivery.",
   },
   {
     icon: Sparkles,
-    title: "Fragrance Guidance",
-    text: "Not sure which oud suits you? We'll match a scent to your taste.",
-    message: "Hello Ibadah Perfumes, I'd like help choosing the right oud fragrance.",
+    title: "Jewellery Guidance",
+    text: "Not sure about sizing or metal? We'll help you find the perfect piece.",
+    message: "Hello Saanz by Sana, I'd like help choosing the right jewellery.",
   },
   {
     icon: Gift,
-    title: "Gifts & Sets",
-    text: "Discovery sets, attars, and curated gifts for any occasion.",
-    message: "Hello Ibadah Perfumes, I'm looking for a gift or discovery set recommendation.",
+    title: "Gifts & Bridal",
+    text: "Bridal sets, anniversary gifts, and curated pieces for every occasion.",
+    message: "Hello Saanz by Sana, I'm looking for a gift or bridal set recommendation.",
   },
 ] as const;
 
@@ -121,8 +121,8 @@ export function ContactContent({ settings }: ContactContentProps) {
         <Container className="py-8 sm:py-12 lg:py-16">
           <PageHeader
             label="Get in Touch"
-            title="Fragrance Concierge"
-            subtitle="Questions about notes, longevity, or your order? We typically reply within a few hours on WhatsApp."
+            title="Jewellery Concierge"
+            subtitle="Questions about sizing, metals, or your order? We typically reply within a few hours on WhatsApp."
           />
 
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
@@ -140,7 +140,7 @@ export function ContactContent({ settings }: ContactContentProps) {
                   icon={<WhatsAppIcon className="size-5 text-[#25D366]" />}
                   label="WhatsApp"
                   title={CONTACT_PHONE_DISPLAY}
-                  description="Fastest way to reach our fragrance team"
+                  description="Fastest way to reach our jewellery team"
                   href={whatsappHref}
                   external
                 />
@@ -173,16 +173,16 @@ export function ContactContent({ settings }: ContactContentProps) {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="sticky top-24 overflow-hidden rounded-2xl section-oud ring-1 ring-white/10">
+              <div className="sticky top-24 overflow-hidden rounded-sm section-wine ring-1 ring-white/10">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_0%,_rgba(110,103,95,0.18),_transparent_55%)]" />
                 <div className="relative p-6 sm:p-8">
                   <p className="label-caps mb-3 text-brand-gold">Private Consultation</p>
                   <div className="oud-accent-bar mb-5 opacity-90" />
-                  <h2 className="font-heading text-2xl sm:text-[1.75rem] text-white leading-tight mb-3">
-                    Find your signature oud
+                  <h2 className="font-heading text-2xl sm:text-[1.75rem] text-[#faf6f0] leading-tight mb-3">
+                    Find your perfect piece
                   </h2>
-                  <p className="text-sm sm:text-base text-white/65 leading-relaxed mb-6">
-                    Share your preferred scent profile, occasion, or a fragrance link — we&apos;ll
+                  <p className="text-sm sm:text-base text-[#faf6f0]/65 leading-relaxed mb-6">
+                    Share your occasion, preferred metal, or a reference photo — we&apos;ll
                     guide you to the perfect composition from our collection.
                   </p>
                   <ul className="space-y-3 mb-7 text-sm text-white/55">
@@ -274,11 +274,10 @@ export function ContactContent({ settings }: ContactContentProps) {
                 <p className="label-caps mb-3">Visit the Atelier</p>
                 <div className="oud-accent-bar mb-5" />
                 <h2 className="font-heading text-2xl sm:text-3xl leading-tight mb-4">
-                  Kasaragod, Kerala
+                  {settings.address}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
-                  {settings.address}. Drop by to explore our oud collection in person, or message
-                  ahead on WhatsApp before your visit.
+                  Message us on WhatsApp for orders, styling advice, or any questions about our jewellery.
                 </p>
                 {mapSearchUrl && mapDirectionsUrl && (
                   <div className="flex flex-col sm:flex-row flex-wrap gap-3">

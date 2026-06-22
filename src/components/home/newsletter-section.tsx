@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { Input } from "@/components/ui/input";
@@ -22,16 +23,21 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#fafaf9] border-t border-border/60">
+    <section className="py-20 sm:py-24 bg-[#f5f0e8] border-t border-border/60">
       <Container>
-        <div className="max-w-2xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-2xl mx-auto text-center"
+        >
           <p className="label-caps mb-4">Newsletter</p>
-          <div className="oud-accent-bar mx-auto mb-6" />
-          <h2 className="font-heading text-2xl sm:text-3xl text-foreground font-normal mb-3">
-            Stay in the loop
+          <div className="jewel-accent-bar mx-auto mb-6" />
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl text-foreground font-normal mb-3">
+            New arrivals &amp; exclusive offers
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base mb-8 leading-relaxed">
-            New releases and fragrance notes from {APP_NAME}.
+            Be the first to know about new collections from {APP_NAME}.
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
             <Input
@@ -46,7 +52,7 @@ export function NewsletterSection() {
             <Button
               type="submit"
               disabled={submitted}
-              className="h-11 rounded-sm bg-primary text-white hover:bg-brand-green-dark px-6 text-[0.62rem] uppercase tracking-[0.18em] font-medium shrink-0"
+              className="h-11 rounded-sm px-6 text-[0.62rem] uppercase tracking-[0.18em] font-medium shrink-0"
             >
               {submitted ? (
                 <>
@@ -61,7 +67,7 @@ export function NewsletterSection() {
               )}
             </Button>
           </form>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

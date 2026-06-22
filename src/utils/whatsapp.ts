@@ -21,9 +21,9 @@ export function generateSingleProductMessage(
   customer: CustomerDetails,
   options?: { size?: string; color?: string }
 ): string {
-  return `Hello Ibadah Perfumes,
+  return `Hello Saanz by Sana,
 
-I would like to order the following fragrance:
+I would like to order the following piece:
 
 Product:
 ${productName}${variantLine(options?.size, options?.color)}
@@ -67,9 +67,9 @@ export function generateCartMessage(
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const grandTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  return `Hello Ibadah Perfumes,
+  return `Hello Saanz by Sana,
 
-I would like to order the following fragrances:
+I would like to order the following jewellery:
 
 ---
 

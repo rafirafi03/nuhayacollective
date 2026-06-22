@@ -5,7 +5,7 @@ import { BRAND_NAME } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Get in touch with ${BRAND_NAME}. Chat on WhatsApp or call us for fragrance advice, orders, and enquiries.`,
+  description: `Get in touch with ${BRAND_NAME}. Chat on WhatsApp or call us for jewellery advice, sizing, and orders.`,
 };
 
 export default async function ContactPage() {

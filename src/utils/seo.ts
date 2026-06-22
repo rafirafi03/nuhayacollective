@@ -3,9 +3,10 @@ import { APP_NAME, APP_URL, BRAND_LOGO_PATH } from "@/lib/constants";
 
 export const brandLogoMetadata = {
   url: BRAND_LOGO_PATH,
-  width: 1200,
-  height: 1200,
+  width: 803,
+  height: 803,
   alt: `${APP_NAME} logo`,
+  type: "image/jpeg",
 } as const;
 
 export function generateProductJsonLd(product: Product) {
