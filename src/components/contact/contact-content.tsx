@@ -15,7 +15,7 @@ import { Container } from "@/components/shared/container";
 import { PageHeader } from "@/components/shared/page-header";
 import { WhatsAppIcon } from "@/components/shared/whatsapp-icon";
 import { Button } from "@/components/ui/button";
-import { CONTACT_PHONE_DISPLAY, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/constants";
+import { APP_NAME, CONTACT_PHONE_DISPLAY, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/constants";
 import { getTelHref, getWhatsAppHref } from "@/lib/contact";
 import {
   getGoogleMapsDirectionsUrl,
@@ -86,19 +86,19 @@ const helpTopics = [
     icon: Package,
     title: "Orders & Delivery",
     text: "Track an order, change details, or ask about shipping timelines.",
-    message: "Hello Saanz by Sana, I have a question about my order or delivery.",
+    message: `Hello ${APP_NAME}, I have a question about my order or delivery.`,
   },
   {
     icon: Sparkles,
-    title: "Jewellery Guidance",
-    text: "Not sure about sizing or metal? We'll help you find the perfect piece.",
-    message: "Hello Saanz by Sana, I'd like help choosing the right jewellery.",
+    title: "Style Guidance",
+    text: "Not sure about sizing or fabric? We'll help you find the perfect abaya.",
+    message: `Hello ${APP_NAME}, I'd like help choosing the right abaya.`,
   },
   {
     icon: Gift,
-    title: "Gifts & Bridal",
-    text: "Bridal sets, anniversary gifts, and curated pieces for every occasion.",
-    message: "Hello Saanz by Sana, I'm looking for a gift or bridal set recommendation.",
+    title: "Gifts & Occasions",
+    text: "Evening abayas, Eid gifts, and curated pieces for every celebration.",
+    message: `Hello ${APP_NAME}, I'm looking for a gift or occasion abaya recommendation.`,
   },
 ] as const;
 
@@ -121,7 +121,7 @@ export function ContactContent({ settings }: ContactContentProps) {
         <Container className="py-8 sm:py-12 lg:py-16">
           <PageHeader
             label="Get in Touch"
-            title="Jewellery Concierge"
+            title="Style Concierge"
             subtitle="Questions about sizing, metals, or your order? We typically reply within a few hours on WhatsApp."
           />
 
@@ -140,7 +140,7 @@ export function ContactContent({ settings }: ContactContentProps) {
                   icon={<WhatsAppIcon className="size-5 text-[#25D366]" />}
                   label="WhatsApp"
                   title={CONTACT_PHONE_DISPLAY}
-                  description="Fastest way to reach our jewellery team"
+                  description="Fastest way to reach our styling team"
                   href={whatsappHref}
                   external
                 />
@@ -215,7 +215,7 @@ export function ContactContent({ settings }: ContactContentProps) {
                       asChild
                     >
                       <Link href="/products">
-                        Browse Fragrances
+                        Shop Abayas
                         <ArrowUpRight className="size-4 ml-2 opacity-70" />
                       </Link>
                     </Button>
@@ -277,7 +277,7 @@ export function ContactContent({ settings }: ContactContentProps) {
                   {settings.address}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
-                  Message us on WhatsApp for orders, styling advice, or any questions about our jewellery.
+                  Message us on WhatsApp for orders, styling advice, or any questions about our abayas.
                 </p>
                 {mapSearchUrl && mapDirectionsUrl && (
                   <div className="flex flex-col sm:flex-row flex-wrap gap-3">

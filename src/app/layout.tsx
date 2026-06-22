@@ -8,7 +8,7 @@ import { ContactFab } from "@/components/shared/contact-fab";
 import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { APP_NAME, APP_URL, BRAND_NAME, BRAND_TAGLINE, BRAND_LOGO_PATH } from "@/lib/constants";
-import { generateOrganizationJsonLd, brandLogoMetadata } from "@/utils/seo";
+import { generateOrganizationJsonLd, brandShareImageMetadata } from "@/utils/seo";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -24,11 +24,11 @@ const jost = Jost({
   display: "swap",
 });
 
-const siteDescription = `Discover handcrafted fine jewellery at ${BRAND_NAME} ${BRAND_TAGLINE}. Rings, necklaces, earrings, and bridal collections with WhatsApp ordering.`;
+const siteDescription = `Discover premium abayas at ${BRAND_NAME} — ${BRAND_TAGLINE}. Open, closed, kimono, and embroidered styles with WhatsApp ordering.`;
 
 export const metadata: Metadata = {
   title: {
-    default: `${APP_NAME} — Fine Rings, Necklaces & Bridal`,
+    default: `${APP_NAME} — Premium Modest Wear`,
     template: `%s | ${APP_NAME}`,
   },
   description: siteDescription,
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: APP_URL,
     siteName: APP_NAME,
-    title: `${APP_NAME} — Fine Rings, Necklaces & Bridal`,
+    title: `${APP_NAME} — Premium Modest Wear`,
     description: siteDescription,
-    images: [brandLogoMetadata],
+    images: [brandShareImageMetadata],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${APP_NAME} — Fine Rings, Necklaces & Bridal`,
+    title: `${APP_NAME} — Premium Modest Wear`,
     description: siteDescription,
-    images: [brandLogoMetadata],
+    images: [brandShareImageMetadata],
   },
   robots: {
     index: true,

@@ -25,8 +25,8 @@ export default function WishlistPage() {
         <Container className="py-20 text-center">
           <Heart className="h-16 w-16 mx-auto mb-4 text-muted-foreground/30" />
           <h1 className="font-heading text-2xl mb-2">Your wishlist is empty</h1>
-          <p className="text-muted-foreground mb-6">Save fragrances you love for later</p>
-          <Button variant="luxury" className="rounded-full" asChild><Link href="/products">Browse Fragrances</Link></Button>
+          <p className="text-muted-foreground mb-6">Save abayas you love for later</p>
+          <Button variant="luxury" className="rounded-full" asChild><Link href="/products">Shop Abayas</Link></Button>
         </Container>
       </div>
     );
@@ -35,7 +35,7 @@ export default function WishlistPage() {
   return (
     <div className="section-parchment min-h-[60vh]">
       <Container className="py-8 sm:py-10">
-        <PageHeader title={`Saved Fragrances (${products.length})`} label="Wishlist" subtitle="Your curated collection of favourites." />
+        <PageHeader title={`Saved Abayas (${products.length})`} label="Wishlist" subtitle="Your curated collection of favourites." />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />

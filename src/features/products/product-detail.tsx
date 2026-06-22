@@ -141,7 +141,7 @@ export function ProductDetail({ product, reviews, relatedProducts }: ProductDeta
       <nav className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 flex flex-wrap items-center gap-x-1 gap-y-1">
         <Link href="/" className="hover:text-primary shrink-0">Home</Link>
         <span>/</span>
-        <Link href="/products" className="hover:text-primary shrink-0">Fragrances</Link>
+        <Link href="/products" className="hover:text-primary shrink-0">Abayas</Link>
         <span>/</span>
         <span className="text-foreground truncate min-w-0">{product.name}</span>
       </nav>

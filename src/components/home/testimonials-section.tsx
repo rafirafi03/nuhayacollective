@@ -17,11 +17,11 @@ export function TestimonialsSection({ testimonials }: { testimonials: Testimonia
   const next = () => setIndex((i) => (i + 1) % featured.length);
 
   return (
-    <section className="py-20 sm:py-24 bg-primary text-[#faf6f0]">
+    <section className="py-20 sm:py-24 bg-[#2c2c32] text-[#f5f5f5]">
       <Container>
         <div className="max-w-3xl mx-auto text-center">
-          <p className="label-caps mb-6 text-[#faf6f0]/60">Testimonials</p>
-          <div className="jewel-accent-bar mx-auto mb-10 bg-[#faf6f0]/35" />
+          <p className="label-caps mb-6 text-[#f5f5f5]/60">Testimonials</p>
+          <div className="jewel-accent-bar mx-auto mb-10 bg-[#f5f5f5]/35" />
           <AnimatePresence mode="wait">
             <motion.div
               key={current._id}
@@ -35,13 +35,13 @@ export function TestimonialsSection({ testimonials }: { testimonials: Testimonia
               </blockquote>
               <div className="flex items-center justify-center gap-3">
                 {current.avatarUrl && (
-                  <div className="relative size-10 rounded-full overflow-hidden border border-[#faf6f0]/20">
+                  <div className="relative size-10 rounded-full overflow-hidden border border-[#f5f5f5]/20">
                     <SafeImage src={current.avatarUrl} alt={current.name} fill className="object-cover" sizes="40px" />
                   </div>
                 )}
                 <div className="text-left">
                   <p className="text-sm font-medium">{current.name}</p>
-                  {current.role && <p className="text-xs text-[#faf6f0]/60">{current.role}</p>}
+                  {current.role && <p className="text-xs text-[#f5f5f5]/60">{current.role}</p>}
                 </div>
               </div>
             </motion.div>
@@ -49,13 +49,13 @@ export function TestimonialsSection({ testimonials }: { testimonials: Testimonia
 
           {featured.length > 1 && (
             <div className="flex items-center justify-center gap-6 mt-10">
-              <button onClick={prev} className="text-[#faf6f0]/60 hover:text-[#faf6f0] transition-colors" aria-label="Previous">
+              <button onClick={prev} className="text-[#f5f5f5]/60 hover:text-[#f5f5f5] transition-colors" aria-label="Previous">
                 <ChevronLeft className="size-4" />
               </button>
-              <span className="text-[0.62rem] uppercase tracking-[0.2em] text-[#faf6f0]/50">
+              <span className="text-[0.62rem] uppercase tracking-[0.2em] text-[#f5f5f5]/50">
                 {String(index + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}
               </span>
-              <button onClick={next} className="text-[#faf6f0]/60 hover:text-[#faf6f0] transition-colors" aria-label="Next">
+              <button onClick={next} className="text-[#f5f5f5]/60 hover:text-[#f5f5f5] transition-colors" aria-label="Next">
                 <ChevronRight className="size-4" />
               </button>
             </div>

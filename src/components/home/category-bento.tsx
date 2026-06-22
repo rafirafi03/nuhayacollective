@@ -14,7 +14,7 @@ export function CategoryBento({ categories }: { categories: Category[] }) {
   if (featured.length === 0) return null;
 
   return (
-    <section className="pt-14 pb-6 sm:pt-18 sm:pb-8 lg:py-24 bg-[#faf6f0] overflow-hidden">
+    <section className="pt-14 pb-6 sm:pt-18 sm:pb-8 lg:py-24 bg-[#f5f5f5] overflow-hidden">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,10 +23,10 @@ export function CategoryBento({ categories }: { categories: Category[] }) {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8 sm:mb-10"
         >
           <div>
-            <p className="label-caps mb-4">Categories</p>
-            <div className="jewel-accent-bar mb-5" />
+            <p className="label-caps mb-4">Collections</p>
+            <div className="luxe-accent-bar mb-5" />
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-foreground leading-tight font-normal">
-              Shop by collection
+              Shop by style
             </h2>
           </div>
           <Link
@@ -91,7 +91,7 @@ function CategoryTile({
     <Link
       href={`/products?category=${category.slug.current}`}
       className={cn(
-        "group relative block overflow-hidden bg-[#f5f0e8]",
+        "group relative block overflow-hidden bg-[#ebebeb]",
         compact ? "aspect-[3/4] w-full" : "h-full min-h-0"
       )}
     >
@@ -102,10 +102,10 @@ function CategoryTile({
         className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.05]"
         sizes={large ? "40vw" : "25vw"}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 text-[#faf6f0]">
-        <p className="text-[0.58rem] uppercase tracking-[0.24em] text-[#faf6f0]/60 mb-2 font-medium">
-          {category.productCount ? `${category.productCount} pieces` : "Collection"}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#2c2c32]/85 via-[#2c2c32]/25 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 text-[#f5f5f5]">
+        <p className="text-[0.58rem] uppercase tracking-[0.24em] text-[#f5f5f5]/60 mb-2 font-medium">
+          {category.productCount ? `${category.productCount} styles` : "Collection"}
         </p>
         <h3 className={cn("font-heading font-normal leading-tight", large ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl")}>
           {category.name}

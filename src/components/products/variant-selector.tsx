@@ -27,7 +27,7 @@ export function VariantSelector({
       {concentrations.length > 0 && (
         <div>
           <p className="label-caps mb-3">
-            Metal — <span className="text-foreground normal-case tracking-normal font-medium">{selectedColor}</span>
+            Colour — <span className="text-foreground normal-case tracking-normal font-medium">{selectedColor}</span>
           </p>
           <div className="flex flex-wrap gap-2">
             {concentrations.map((conc: ProductColor) => {
@@ -86,7 +86,7 @@ export function VariantSelector({
           })}
         </div>
         <p className="text-xs text-muted-foreground mt-2">
-          Hallmarked gold · Insured shipping on qualifying orders
+          Premium fabrics · Size guidance on WhatsApp
         </p>
       </div>
     </div>

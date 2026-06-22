@@ -1,5 +1,5 @@
 import type { CartItem, OrderItem } from "@/types";
-import { APP_URL, WHATSAPP_NUMBER } from "@/lib/constants";
+import { APP_NAME, APP_URL, WHATSAPP_NUMBER } from "@/lib/constants";
 
 interface CustomerDetails {
   name: string;
@@ -21,7 +21,7 @@ export function generateSingleProductMessage(
   customer: CustomerDetails,
   options?: { size?: string; color?: string }
 ): string {
-  return `Hello Saanz by Sana,
+  return `Hello ${APP_NAME},
 
 I would like to order the following piece:
 
@@ -67,9 +67,9 @@ export function generateCartMessage(
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const grandTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  return `Hello Saanz by Sana,
+  return `Hello ${APP_NAME},
 
-I would like to order the following jewellery:
+I would like to order the following abaya:
 
 ---
 

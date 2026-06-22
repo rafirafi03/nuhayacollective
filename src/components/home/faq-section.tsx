@@ -21,7 +21,7 @@ export function FAQSection({ faqs }: { faqs: FAQ[] }) {
               Questions answered
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-              Everything you need to know about our jewellery, sizing, and ordering.
+              Everything you need to know about our abayas, sizing, and ordering.
             </p>
           </motion.div>
 

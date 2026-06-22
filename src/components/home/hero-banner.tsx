@@ -52,7 +52,7 @@ export function HeroBanner({ banners }: HeroBannerProps) {
 
   return (
     <section
-      className="relative -mt-[3.75rem] sm:-mt-16 min-h-[100svh] overflow-hidden bg-[#2f0a14]"
+      className="relative -mt-[3.75rem] sm:-mt-16 min-h-[100svh] overflow-hidden bg-[#2c2c32]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -98,7 +98,7 @@ export function HeroBanner({ banners }: HeroBannerProps) {
               {banner.subtitle && (
                 <motion.p
                   variants={fadeUp}
-                  className="hero-text-shadow text-[0.62rem] uppercase tracking-[0.32em] text-[#faf6f0] font-semibold mb-4"
+                  className="hero-text-shadow text-[0.62rem] uppercase tracking-[0.32em] text-[#f5f5f5] font-semibold mb-4"
                 >
                   {banner.subtitle}
                 </motion.p>
@@ -106,7 +106,7 @@ export function HeroBanner({ banners }: HeroBannerProps) {
 
               <motion.h1
                 variants={fadeUp}
-                className="hero-text-shadow font-heading text-[2.5rem] leading-[1.06] sm:text-5xl lg:text-[3.5rem] text-[#faf6f0] text-balance"
+                className="hero-text-shadow font-heading text-[2.5rem] leading-[1.06] sm:text-5xl lg:text-[3.5rem] text-[#f5f5f5] text-balance"
               >
                 {banner.title}
               </motion.h1>
@@ -117,7 +117,7 @@ export function HeroBanner({ banners }: HeroBannerProps) {
                 <motion.div variants={fadeUp}>
                   <Button
                     size="lg"
-                    className="h-12 rounded-sm bg-[#faf6f0] text-[#4a1220] hover:bg-[#f5f0e8] px-8 text-[0.65rem] uppercase tracking-[0.18em] font-semibold shadow-[0_8px_24px_-6px_rgba(0,0,0,0.35)]"
+                    className="h-12 rounded-sm bg-[#a67b5b] text-[#f5f5f5] hover:bg-[#8a6349] px-8 text-[0.65rem] uppercase tracking-[0.18em] font-semibold shadow-[0_8px_24px_-6px_rgba(0,0,0,0.35)]"
                     asChild
                   >
                     <Link href={banner.link}>
@@ -132,14 +132,14 @@ export function HeroBanner({ banners }: HeroBannerProps) {
         </Container>
 
         <div className="absolute bottom-0 inset-x-0 z-20 pointer-events-none">
-          <div className="h-28 bg-gradient-to-t from-[#2f0a14]/80 to-transparent" />
+          <div className="h-28 bg-gradient-to-t from-[#2c2c32]/80 to-transparent" />
           <Container className="relative -mt-20 pb-6 sm:pb-7 pointer-events-auto">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4 hero-text-shadow">
-                <span className="font-heading text-2xl sm:text-3xl text-[#faf6f0] tabular-nums leading-none">
+                <span className="font-heading text-2xl sm:text-3xl text-[#f5f5f5] tabular-nums leading-none">
                   {String(current + 1).padStart(2, "0")}
                 </span>
-                <span className="text-[0.6rem] uppercase tracking-[0.25em] text-[#faf6f0] font-medium">
+                <span className="text-[0.6rem] uppercase tracking-[0.25em] text-[#f5f5f5] font-medium">
                   / {String(heroBanners.length).padStart(2, "0")}
                 </span>
                 <div className="hidden sm:flex gap-1.5 ml-2">
@@ -150,7 +150,7 @@ export function HeroBanner({ banners }: HeroBannerProps) {
                       aria-label={`Go to slide ${i + 1}`}
                       className={cn(
                         "h-0.5 rounded-full transition-all duration-300",
-                        i === current ? "w-7 bg-[#faf6f0]" : "w-2.5 bg-[#faf6f0]/40 hover:bg-[#faf6f0]/70"
+                        i === current ? "w-7 bg-[#f5f5f5]" : "w-2.5 bg-[#f5f5f5]/40 hover:bg-[#f5f5f5]/70"
                       )}
                     />
                   ))}
@@ -161,14 +161,14 @@ export function HeroBanner({ banners }: HeroBannerProps) {
                 <div className="flex items-center gap-1">
                   <button
                     onClick={prev}
-                    className="p-2 text-[#faf6f0] hover:text-[#faf6f0]/80 transition-colors"
+                    className="p-2 text-[#f5f5f5] hover:text-[#f5f5f5]/80 transition-colors"
                     aria-label="Previous slide"
                   >
                     <ChevronLeft className="size-4" />
                   </button>
                   <button
                     onClick={next}
-                    className="p-2 text-[#faf6f0] hover:text-[#faf6f0]/80 transition-colors"
+                    className="p-2 text-[#f5f5f5] hover:text-[#f5f5f5]/80 transition-colors"
                     aria-label="Next slide"
                   >
                     <ChevronRight className="size-4" />
@@ -180,22 +180,22 @@ export function HeroBanner({ banners }: HeroBannerProps) {
         </div>
       </div>
 
-      <div className="relative z-20 bg-[#faf6f0] border-t border-[#dccfc4] py-3 overflow-hidden">
+      <div className="relative z-20 bg-[#f5f5f5] border-t border-border py-3 overflow-hidden">
         <div className="flex whitespace-nowrap marquee-track w-max">
           {[...Array(2)].map((_, dup) => (
             <div key={dup} className="flex items-center">
               {[
-                "Hallmarked Gold",
-                "Certified Stones",
-                "Insured Delivery",
+                "Premium Fabrics",
+                "Modest Silhouettes",
+                "Nationwide Delivery",
                 "WhatsApp Orders",
-                "Bridal Specialists",
+                "Size Guidance",
               ].map((item) => (
                 <span
                   key={`${dup}-${item}`}
-                  className="flex items-center px-8 text-[0.62rem] uppercase tracking-[0.22em] text-[#4a1220] font-medium"
+                  className="flex items-center px-8 text-[0.62rem] uppercase tracking-[0.22em] text-[#2c2c32] font-medium"
                 >
-                  <span className="size-1 rounded-full bg-[#4a1220]/50 mr-8" />
+                  <span className="size-1 rounded-full bg-[#a67b5b]/60 mr-8" />
                   {item}
                 </span>
               ))}

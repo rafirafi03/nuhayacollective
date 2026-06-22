@@ -1,6 +1,6 @@
-export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Saanz by Sana";
-export const BRAND_NAME = process.env.NEXT_PUBLIC_BRAND_NAME || "saanzbysana";
-export const BRAND_TAGLINE = process.env.NEXT_PUBLIC_BRAND_TAGLINE || "by Sana";
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Nuhaya Collective";
+export const BRAND_NAME = process.env.NEXT_PUBLIC_BRAND_NAME || "nuhayacollective";
+export const BRAND_TAGLINE = process.env.NEXT_PUBLIC_BRAND_TAGLINE || "Modest Luxury";
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 export const STORE_URL = process.env.NEXT_PUBLIC_STORE_URL || APP_URL;
 export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919746807689";
@@ -8,20 +8,21 @@ export const CONTACT_PHONE_DISPLAY =
   process.env.NEXT_PUBLIC_CONTACT_PHONE_DISPLAY || "+919746807689";
 export const CURRENCY_SYMBOL = "₹";
 export const ITEMS_PER_PAGE = 12;
-export const INSTAGRAM_HANDLE = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "saanzbysana";
+export const INSTAGRAM_HANDLE = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "nuhayacollective";
 export const INSTAGRAM_URL =
-  process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/saanzbysana/";
+  process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/nuhayacollective/";
 
-export const BRAND_LOGO_PATH = "/saanzbysana_logo.jpg";
+export const BRAND_LOGO_PATH = "/nuhayacollective_logo.jpg";
+export const BRAND_SHARE_IMAGE_PATH = "/nuhayacollective.jpg";
 
-/** Design tokens — wine red + cream only */
+/** Design tokens — taupe + charcoal + soft white */
 export const COLORS = {
-  wine: "#4A1220",
-  wineDark: "#2F0A14",
-  wineLight: "#5E1A2E",
-  cream: "#FAF6F0",
-  creamDark: "#F5F0E8",
-  champagne: "#EDE6DA",
+  taupe: "#A67B5B",
+  charcoal: "#2C2C32",
+  offWhite: "#F5F5F5",
+  taupeLight: "#C4A484",
+  taupeDark: "#8A6349",
+  charcoalLight: "#3D3D44",
 } as const;
 
 export const ORDER_STATUSES = [

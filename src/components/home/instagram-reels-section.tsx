@@ -18,8 +18,8 @@ interface InstagramReelsSectionProps {
 
 export function InstagramReelsSection({
   reels,
-  title = "From the Atelier",
-  subtitle = "Watch our latest reels — styling tips, new arrivals, and behind-the-scenes craft.",
+  title = "Style Inspiration",
+  subtitle = "Watch our latest reels — abaya styling, new arrivals, and behind-the-scenes from the atelier.",
   label = "Instagram",
 }: InstagramReelsSectionProps) {
   const featured = reels.filter((r) => r.featured !== false).slice(0, 6);

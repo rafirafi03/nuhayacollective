@@ -36,16 +36,16 @@ export function Header() {
   const onHero = isHome && !scrolled;
 
   const iconClass = onHero
-    ? "text-[#faf6f0] hover:bg-[#faf6f0]/10"
-    : "text-[#4a1220] hover:bg-[#f5f0e8]";
+    ? "text-[#f5f5f5] hover:bg-[#f5f5f5]/10"
+    : "text-[#2c2c32] hover:bg-[#ebebeb]";
 
   return (
     <motion.header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-500",
         onHero
-          ? "bg-transparent border-b border-[#faf6f0]/10 backdrop-blur-[2px]"
-          : "bg-[#faf6f0]/98 backdrop-blur-xl border-b border-[#dccfc4]"
+          ? "bg-transparent border-b border-[#f5f5f5]/10 backdrop-blur-[2px]"
+          : "bg-[#f5f5f5]/98 backdrop-blur-xl border-b border-border"
       )}
     >
       <Container>
@@ -69,11 +69,11 @@ export function Header() {
                   "text-[0.62rem] uppercase tracking-[0.22em] font-medium transition-colors",
                   onHero
                     ? pathname === link.href
-                      ? "text-[#faf6f0]"
-                      : "text-[#faf6f0]/65 hover:text-[#faf6f0]"
+                      ? "text-[#f5f5f5]"
+                      : "text-[#f5f5f5]/65 hover:text-[#f5f5f5]"
                     : pathname === link.href
-                      ? "text-[#4a1220]"
-                      : "text-muted-foreground hover:text-[#4a1220]"
+                      ? "text-[#a67b5b]"
+                      : "text-muted-foreground hover:text-[#2c2c32]"
                 )}
               >
                 {link.label}
@@ -82,7 +82,7 @@ export function Header() {
           </div>
 
           <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-            <BrandLogo compact variant={onHero ? "light" : "wine"} />
+            <BrandLogo compact variant={onHero ? "light" : "default"} />
           </Link>
 
           <div className="flex items-center gap-0.5 flex-1 justify-end">
@@ -90,8 +90,8 @@ export function Header() {
               <SearchBar
                 className={cn(
                   onHero
-                    ? "[&_input]:bg-[#faf6f0]/10 [&_input]:border-[#faf6f0]/20 [&_input]:text-[#faf6f0] [&_input]:placeholder:text-[#faf6f0]/45"
-                    : "[&_input]:bg-[#f5f0e8] [&_input]:border-[#dccfc4]",
+                    ? "[&_input]:bg-[#f5f5f5]/10 [&_input]:border-[#f5f5f5]/20 [&_input]:text-[#f5f5f5] [&_input]:placeholder:text-[#f5f5f5]/45"
+                    : "[&_input]:bg-white [&_input]:border-border",
                   "[&_input]:rounded-sm"
                 )}
               />
@@ -107,7 +107,7 @@ export function Header() {
                 {wishlistCount > 0 && (
                   <span className={cn(
                     "absolute -top-0.5 -right-0.5 h-4 min-w-4 px-0.5 rounded-full text-[9px] flex items-center justify-center font-medium",
-                    onHero ? "bg-[#faf6f0] text-[#4a1220]" : "bg-[#4a1220] text-[#faf6f0]"
+                    onHero ? "bg-[#f5f5f5] text-[#2c2c32]" : "bg-[#a67b5b] text-[#f5f5f5]"
                   )}>
                     {wishlistCount}
                   </span>
@@ -125,7 +125,7 @@ export function Header() {
               {itemCount > 0 && (
                 <span className={cn(
                   "absolute -top-0.5 -right-0.5 h-4 min-w-4 px-0.5 rounded-full text-[9px] flex items-center justify-center font-medium",
-                  onHero ? "bg-[#faf6f0] text-[#4a1220]" : "bg-[#4a1220] text-[#faf6f0]"
+                  onHero ? "bg-[#f5f5f5] text-[#2c2c32]" : "bg-[#a67b5b] text-[#f5f5f5]"
                 )}>
                   {itemCount}
                 </span>
@@ -137,11 +137,11 @@ export function Header() {
 
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetTrigger className="sr-only">Menu</SheetTrigger>
-        <SheetContent side="left" className="w-full max-w-[min(100vw,20rem)] border-r border-[#dccfc4] bg-[#faf6f0] p-5">
+        <SheetContent side="left" className="w-full max-w-[min(100vw,20rem)] border-r border-border bg-[#f5f5f5] p-5">
           <div className="flex flex-col gap-6 mt-4">
             <BrandLogo />
             <SearchBar inlineResults onNavigate={() => setMobileOpen(false)} />
-            <nav className="flex flex-col gap-1 border-t border-[#dccfc4] pt-5">
+            <nav className="flex flex-col gap-1 border-t border-border pt-5">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -149,7 +149,7 @@ export function Header() {
                   onClick={() => setMobileOpen(false)}
                   className={cn(
                     "font-heading text-2xl py-2.5 px-3 transition-colors",
-                    pathname === link.href ? "text-[#4a1220]" : "text-[#2a1218] hover:text-[#4a1220]"
+                    pathname === link.href ? "text-[#a67b5b]" : "text-[#2c2c32] hover:text-[#a67b5b]"
                   )}
                 >
                   {link.label}

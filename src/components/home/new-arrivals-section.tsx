@@ -12,7 +12,7 @@ export function NewArrivalsSection({ products }: { products: Product[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="pt-6 pb-14 sm:pt-10 sm:pb-20 lg:py-24 bg-[#faf6f0]">
+    <section className="pt-6 pb-14 sm:pt-10 sm:pb-20 lg:py-24 bg-[#f5f5f5]">
       <Container>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
           <motion.div

@@ -21,8 +21,8 @@ export default function CartPage() {
         <Container className="py-20 text-center">
           <ShoppingBag className="h-16 w-16 mx-auto mb-4 text-muted-foreground/30" />
           <h1 className="font-heading text-2xl mb-2">Your bag is empty</h1>
-          <p className="text-muted-foreground mb-6">Discover our latest oud collections</p>
-          <Button variant="luxury" className="rounded-full" asChild><Link href="/products">Browse Fragrances</Link></Button>
+          <p className="text-muted-foreground mb-6">Discover our latest abaya collections</p>
+          <Button variant="luxury" className="rounded-full" asChild><Link href="/products">Shop Abayas</Link></Button>
         </Container>
       </div>
     );

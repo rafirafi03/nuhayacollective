@@ -1,22 +1,25 @@
 import type { Product } from "@/types";
 
-export const JEWELRY_RING_SIZES = ["6", "7", "8", "9", "10"] as const;
-export const JEWELRY_CHAIN_LENGTHS = ['16"', '18"', '20"', '22"'] as const;
-/** @deprecated use product-specific sizes */
-export const FRAGRANCE_VOLUMES = [...JEWELRY_RING_SIZES] as const;
-
-export type JewelryRingSize = (typeof JEWELRY_RING_SIZES)[number];
+export const ABAYA_SIZES = ["XS", "S", "M", "L", "XL", "XXL"] as const;
+/** @deprecated use ABAYA_SIZES */
+export const JEWELRY_RING_SIZES = [...ABAYA_SIZES] as const;
+export const JEWELRY_CHAIN_LENGTHS = [...ABAYA_SIZES] as const;
 /** @deprecated */
-export type FragranceVolume = JewelryRingSize;
+export const FRAGRANCE_VOLUMES = [...ABAYA_SIZES] as const;
+
+export type AbayaSize = (typeof ABAYA_SIZES)[number];
+/** @deprecated */
+export type JewelryRingSize = AbayaSize;
+/** @deprecated */
+export type FragranceVolume = AbayaSize;
 
 export function getCartLineId(productId: string, size?: string, color?: string) {
   return `${productId}::${size || "default"}::${color || "default"}`;
 }
 
-/** sizes field stores ring size or chain length */
 export function getProductVolumes(product: Product): string[] {
   if (product.sizes?.length) return product.sizes;
-  return [...JEWELRY_RING_SIZES];
+  return [...ABAYA_SIZES];
 }
 
 /** @deprecated use getProductVolumes */

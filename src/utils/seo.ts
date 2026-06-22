@@ -1,11 +1,19 @@
 import type { Product } from "@/types";
-import { APP_NAME, APP_URL, BRAND_LOGO_PATH } from "@/lib/constants";
+import { APP_NAME, APP_URL, BRAND_LOGO_PATH, BRAND_SHARE_IMAGE_PATH } from "@/lib/constants";
 
 export const brandLogoMetadata = {
   url: BRAND_LOGO_PATH,
   width: 803,
   height: 803,
   alt: `${APP_NAME} logo`,
+  type: "image/jpeg",
+} as const;
+
+export const brandShareImageMetadata = {
+  url: BRAND_SHARE_IMAGE_PATH,
+  width: 1080,
+  height: 769,
+  alt: `${APP_NAME} — premium abayas`,
   type: "image/jpeg",
 } as const;
 
@@ -42,6 +50,7 @@ export function generateOrganizationJsonLd() {
     name: APP_NAME,
     url: APP_URL,
     logo: `${APP_URL}${BRAND_LOGO_PATH}`,
+    image: `${APP_URL}${BRAND_SHARE_IMAGE_PATH}`,
   };
 }
 

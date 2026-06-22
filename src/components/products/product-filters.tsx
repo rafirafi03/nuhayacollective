@@ -72,7 +72,7 @@ export function ProductFilters({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Fragrance name, oud type..."
+            placeholder="Abaya name, style, fabric..."
             value={filters.search}
             onChange={(e) => onChange({ search: e.target.value })}
             className="pl-9 h-10 rounded-full bg-background"

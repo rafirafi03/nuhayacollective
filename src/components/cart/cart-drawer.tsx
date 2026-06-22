@@ -34,7 +34,7 @@ export function CartDrawer() {
                 <ShoppingBag className="h-12 w-12 mb-4 opacity-30" />
                 <p>Your bag is empty</p>
                 <Button variant="link" className="text-brand-amber" onClick={() => setCartOpen(false)} asChild>
-                  <Link href="/products">Browse Fragrances</Link>
+                  <Link href="/products">Shop Abayas</Link>
                 </Button>
               </motion.div>
             ) : (

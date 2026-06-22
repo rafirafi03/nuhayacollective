@@ -35,7 +35,7 @@ export default async function HomePage() {
       <CategoryBento categories={categories} />
       <NewArrivalsSection products={newArrivals.length ? newArrivals : featured} />
       <BridalShowcase
-        products={featured.filter((p) => p.category?.slug.current === "bridal-collection")}
+        products={featured.filter((p) => p.category?.slug.current === "evening-abayas")}
       />
       <ProductTabs featured={featured} newArrivals={newArrivals} bestSellers={bestSellers} />
       <InstagramReelsSection reels={reels} />

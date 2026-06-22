@@ -13,8 +13,8 @@ export default async function CategoriesPage() {
       <Container className="py-10 sm:py-14">
         <PageHeader
           label="Collections"
-          title="Explore by Scent Family"
-          subtitle="From deep Hindi oud to fresh Arabian blends — find your signature."
+          title="Explore by Style"
+          subtitle="Open, closed, kimono, embroidered, and evening abayas for every occasion."
         />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
           {categories.map((cat, i) => (
@@ -33,7 +33,7 @@ export default async function CategoriesPage() {
                     <h3 className="font-heading text-base sm:text-lg font-medium">{cat.name}</h3>
                     {cat.productCount && (
                       <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gold mt-1">
-                        {cat.productCount} fragrances
+                        {cat.productCount} styles
                       </p>
                     )}
                   </div>

@@ -51,7 +51,7 @@ export function ProductTabs({ featured, newArrivals, bestSellers }: ProductTabsP
             <p className="label-caps mb-4">Shop</p>
             <div className="jewel-accent-bar mb-5" />
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-foreground leading-tight font-normal">
-              Find your piece
+              Find your abaya
             </h2>
           </div>
 
@@ -99,7 +99,7 @@ export function ProductTabs({ featured, newArrivals, bestSellers }: ProductTabsP
         <div className="flex justify-center mt-14">
           <Link
             href={viewAllHref}
-            className="inline-flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.2em] font-medium text-primary border border-primary/30 px-8 h-11 hover:bg-primary hover:text-[#faf6f0] transition-colors rounded-sm"
+            className="inline-flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.2em] font-medium text-primary border border-primary/30 px-8 h-11 hover:bg-primary hover:text-[#f5f5f5] transition-colors rounded-sm"
           >
             View all
             <ArrowRight className="size-3.5" />

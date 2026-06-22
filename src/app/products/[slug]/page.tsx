@@ -5,7 +5,7 @@ import { getProductReviews, getRelatedProducts } from "@/services/content-servic
 import { ProductDetail } from "@/features/products/product-detail";
 import { generateProductJsonLd, generateBreadcrumbJsonLd } from "@/utils/seo";
 import { APP_URL } from "@/lib/constants";
-import { brandLogoMetadata } from "@/utils/seo";
+import { brandShareImageMetadata } from "@/utils/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -25,14 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description: description?.slice(0, 160),
-      images: product.imageUrl ? [{ url: product.imageUrl }] : [brandLogoMetadata],
+      images: product.imageUrl ? [{ url: product.imageUrl }] : [brandShareImageMetadata],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: description?.slice(0, 160),
-      images: product.imageUrl ? [product.imageUrl] : [brandLogoMetadata],
+      images: product.imageUrl ? [product.imageUrl] : [brandShareImageMetadata],
     },
     alternates: {
       canonical: `${APP_URL}/products/${slug}`,

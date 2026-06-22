@@ -1,4 +1,4 @@
-import { CONTACT_PHONE_DISPLAY, WHATSAPP_NUMBER } from "@/lib/constants";
+import { APP_NAME, CONTACT_PHONE_DISPLAY, WHATSAPP_NUMBER } from "@/lib/constants";
 
 export { CONTACT_PHONE_DISPLAY };
 
@@ -7,7 +7,7 @@ export function getTelHref(phone: string = WHATSAPP_NUMBER): string {
 }
 
 export function getWhatsAppHref(
-  message = "Hello Saanz by Sana, I'd like to get in touch.",
+  message = `Hello ${APP_NAME}, I'd like to get in touch.`,
   phone: string = WHATSAPP_NUMBER
 ): string {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
