@@ -12,8 +12,9 @@ export const INSTAGRAM_HANDLE = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "nuh
 export const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/nuhayacollective/";
 
-export const BRAND_LOGO_PATH = "/nuhayacollective_logo.jpg";
-export const BRAND_SHARE_IMAGE_PATH = "/nuhayacollective.jpg";
+export const BRAND_IMAGE_PATH = "/nuhayacollective.jpg";
+export const BRAND_LOGO_PATH = BRAND_IMAGE_PATH;
+export const BRAND_SHARE_IMAGE_PATH = BRAND_IMAGE_PATH;
 
 /** Design tokens — taupe + charcoal + soft white */
 export const COLORS = {
